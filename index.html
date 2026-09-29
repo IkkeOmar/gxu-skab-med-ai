@@ -295,7 +295,7 @@
   }
   .about-media .row {
     display: grid;
-    grid-template-columns: 84px 1fr;
+    grid-template-columns: 132px 1fr;
     gap: 14px;
     align-items: center;
     border: 2px solid var(--line);
@@ -303,8 +303,10 @@
     background: var(--bg-2);
   }
   .about-media .row img {
-    width: 84px; height: 84px;
-    object-fit: cover;
+    width: 132px; height: 132px;
+    object-fit: contain;
+    background: var(--bg);
+    padding: 6px;
     border: 1px solid var(--line);
   }
   .about-media .row .r-text h4 {
@@ -316,6 +318,11 @@
     font-size: 12px;
     color: var(--muted);
     font-family: "JetBrains Mono", monospace;
+  }
+  .about-media .row .r-text h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
   }
   .about-media video {
     width: 100%;
@@ -387,7 +394,97 @@
   .vocab-card:nth-child(4) .stripe { background: var(--ink); }
 
   /* ============================================ */
-  /* SLIDE 4 — Brainstorm                           */
+  /* SLIDE 4 — Hvad er kodning                      */
+  /* ============================================ */
+  .slide-coding {
+    max-width: 1200px;
+    width: 100%;
+  }
+  .coding-header { margin-bottom: 32px; }
+  .coding-header .small { color: var(--accent); margin-bottom: 10px; display: block; }
+  .coding-header h2 { margin-bottom: 8px; }
+  .coding-header h2 .accent-word { color: var(--accent); font-style: italic; }
+  .coding-header p {
+    color: var(--muted);
+    font-size: 18px;
+    font-family: "JetBrains Mono", monospace;
+    max-width: 720px;
+  }
+  .coding-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 18px;
+  }
+  .coding-def {
+    background: var(--bg-2);
+    border: 2px solid var(--line);
+    padding: 28px;
+  }
+  .coding-def .lead {
+    font-size: 26px;
+    line-height: 1.3;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .coding-def .lead .clanker {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 700;
+  }
+  .coding-def .small-note {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .coding-def .actual {
+    font-size: 17px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+  .coding-def .actual strong { color: var(--ink); }
+  .coding-pills {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .pill {
+    background: var(--bg-2);
+    border: 2px solid var(--line);
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .pill .pnum {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    background: var(--accent);
+    color: var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--line);
+  }
+  .pill:nth-child(2) .pnum { background: var(--accent-2); color: var(--bg); }
+  .pill:nth-child(3) .pnum { background: var(--accent-3); color: var(--ink); }
+  .pill:nth-child(4) .pnum { background: var(--ink); color: var(--bg); }
+  .pill .ptext strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .pill .ptext span { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
+  .pill .ptext code {
+    font-family: "JetBrains Mono", monospace;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 1px 6px;
+    font-size: 13px;
+  }
+
+  /* ============================================ */
+  /* SLIDE 5 — Brainstorm                           */
   /* ============================================ */
   .slide-brainstorm {
     max-width: 1300px;
@@ -782,10 +879,14 @@
   }
   .end-points {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
     margin-bottom: 36px;
     text-align: left;
+  }
+  .end-points .end-point:nth-child(4),
+  .end-points .end-point:nth-child(5) {
+    grid-column: span 1;
   }
   .end-point {
     background: var(--bg-2);
@@ -956,12 +1057,13 @@
     <div class="cover-right">
       <div class="map-card" data-jump="2"><span class="num">1</span><h4>Om mig</h4><p>Hvem er Omar, og hvorfor AI?</p></div>
       <div class="map-card" data-jump="3"><span class="num">2</span><h4>4 ord</h4><p>Server, LLM, agent, harness</p></div>
-      <div class="map-card" data-jump="4"><span class="num">3</span><h4>Brainstorm</h4><p>Gratis AI'er mens du installerer</p></div>
-      <div class="map-card" data-jump="5"><span class="num">4</span><h4>Snak med AI</h4><p>Trash in / trash out</p></div>
-      <div class="map-card" data-jump="6"><span class="num">5</span><h4>Værktøjerne</h4><p>Det vi har installeret</p></div>
-      <div class="map-card" data-jump="7"><span class="num">6</span><h4>Vælg projekt</h4><p>Site · Webshop · App · Spil</p></div>
-      <div class="map-card" data-jump="8"><span class="num">7</span><h4>Go build</h4><p>Og så er det bare at gå i gang</p></div>
-      <div class="map-card scan" data-jump="8"><span class="num">→</span><h4>Scan QR</h4><p>Få prompts med hjem</p></div>
+      <div class="map-card" data-jump="4"><span class="num">3</span><h4>Hvad er kodning?</h4><p>60 sek — så kan du forklare det</p></div>
+      <div class="map-card" data-jump="5"><span class="num">4</span><h4>Brainstorm</h4><p>Gratis AI'er mens du installerer</p></div>
+      <div class="map-card" data-jump="6"><span class="num">5</span><h4>Snak med AI</h4><p>Trash in / trash out</p></div>
+      <div class="map-card" data-jump="7"><span class="num">6</span><h4>Værktøjerne</h4><p>Det vi har installeret</p></div>
+      <div class="map-card" data-jump="8"><span class="num">7</span><h4>Vælg projekt</h4><p>Site · Webshop · App · Spil</p></div>
+      <div class="map-card" data-jump="9"><span class="num">8</span><h4>Go build</h4><p>Og så er det bare at gå i gang</p></div>
+      <div class="map-card scan" data-jump="9"><span class="num">→</span><h4>Scan QR</h4><p>Få prompts med hjem</p></div>
     </div>
   </section>
 
@@ -1045,10 +1147,58 @@
     </div>
   </section>
 
-  <!-- SLIDE 4: BRAINSTORM -->
-  <section class="slide slide-brainstorm" data-slide="4">
+  <!-- SLIDE 4: HVAD ER KODNING -->
+  <section class="slide slide-coding" data-slide="4">
+    <div class="coding-header">
+      <span class="small">SLIDE 03 · KORT FORTALT</span>
+      <h2>Hvad er <span class="accent-word">kodning</span>?</h2>
+      <p>60 sekunder. Så kan du forklare det videre.</p>
+    </div>
+    <div class="coding-grid">
+      <div class="coding-def">
+        <div class="small-note">DEFINITION</div>
+        <div class="lead">Kodning er at <span class="clanker">fortælle en computer hvad den skal gøre</span>.</div>
+        <div class="actual">
+          Punktum. Ikke magi. Ikke "matrix". Du skriver <strong>trin for trin</strong> hvad maskinen skal gøre — og så gør den det. Ingen gætterier. Ingen fri fortolkning. Det er derfor det hedder <strong>kode</strong>: en opskrift, skrevet så præcist at selv en clanker kan følge den.
+        </div>
+      </div>
+      <div class="coding-pills">
+        <div class="pill">
+          <div class="pnum">01</div>
+          <div class="ptext">
+            <strong>Det er bare tekst</strong>
+            <span>En kodefil er en helt almindelig .txt-fil med en bestemt struktur. Åbn den i Notesblok — du kan læse den.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="pnum">02</div>
+          <div class="ptext">
+            <strong>Det er et sprog</strong>
+            <span>Python, JavaScript, HTML. Forskellige ordforråd — samme idé: <em>"gør A, så B, ellers C"</em>.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="pnum">03</div>
+          <div class="ptext">
+            <strong>Det er en opskrift</strong>
+            <span>Som en madopskrift: rør, vent 5 min, tilsæt salt. Computeren udfører det i den rækkefølge du skriver det.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="pnum">04</div>
+          <div class="ptext">
+            <strong>AI skriver koden nu</strong>
+            <span>Du skriver <code>"lav en app der X"</code> — AI'en skriver koden. Din nye rolle er at <em>forklare hvad du vil have</em>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: BRAINSTORM -->
+  <section class="slide slide-brainstorm" data-slide="5">
     <div class="bs-text">
-      <span class="small">SLIDE 03 · IMENS DU VENTER</span>
+      <span class="small">SLIDE 04 · IMENS DU VENTER</span>
       <h2>Brug AI til at <span class="accent-word">brainstorm</span></h2>
       <p class="lead">Downloads tager tid. Lad os ikke spilde den — åbn en AI i din browser og begynd at idéudvikle nu.</p>
       <div class="step"><span class="n">1</span><span>Gå ind på <a href="https://fmhy.net/ai" target="_blank" style="color:var(--accent); font-family:'JetBrains Mono',monospace; font-weight:700;">fmhy.net/ai</a> — en kæmpe liste af gratis AI'er</span></div>
@@ -1071,10 +1221,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 5: PROMPTS / TRASH IN OUT -->
-  <section class="slide slide-prompts" data-slide="5">
+  <!-- SLIDE 6: PROMPTS / TRASH IN OUT -->
+  <section class="slide slide-prompts" data-slide="6">
     <div class="prompts-header">
-      <span class="small">SLIDE 04 · TRASH IN, TRASH OUT</span>
+      <span class="small">SLIDE 05 · TRASH IN, TRASH OUT</span>
       <h2>Sådan snakker du med en <span class="accent-word">AI</span></h2>
       <p>En AI gør præcis det du beder om — hverken mere eller mindre. Så vær konkret.</p>
     </div>
@@ -1115,10 +1265,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 6: TOOLS -->
-  <section class="slide slide-tools" data-slide="6">
+  <!-- SLIDE 7: TOOLS -->
+  <section class="slide slide-tools" data-slide="7">
     <div class="tools-header">
-      <span class="small">SLIDE 05 · VÆRKTØJER</span>
+      <span class="small">SLIDE 06 · VÆRKTØJER</span>
       <h2>Det du har <span class="accent-word">lige nu</span></h2>
       <p>Kort forklaret. Ingen tech-snobs.</p>
     </div>
@@ -1158,10 +1308,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 7: VÆLG PROJEKT -->
-  <section class="slide slide-pick" data-slide="7">
+  <!-- SLIDE 8: VÆLG PROJEKT -->
+  <section class="slide slide-pick" data-slide="8">
     <div class="pick-header">
-      <span class="small">SLIDE 06 · DIN TUR</span>
+      <span class="small">SLIDE 07 · DIN TUR</span>
       <h2>Vælg dit <span class="accent-word">projekt</span></h2>
       <p>Scan QR → kopiér prompt → start</p>
     </div>
@@ -1196,9 +1346,9 @@
     </div>
   </section>
 
-  <!-- SLIDE 8: SLUT -->
-  <section class="slide slide-end" data-slide="8">
-    <span class="label-tag orange">SLIDE 07 · GO BUILD</span>
+  <!-- SLIDE 9: SLUT -->
+  <section class="slide slide-end" data-slide="9">
+    <span class="label-tag orange">SLIDE 08 · GO BUILD</span>
     <h1 style="margin-top:14px;">Build your own <span class="accent-word">X</span></h1>
     <p class="lead">Fra nul til noget der virker. Hjemmeside, webshop, app eller spil. Jeg kigger rundt — spørg når I er kørt fast.</p>
     <div class="end-points">
@@ -1208,17 +1358,22 @@
         <p>Og hvad der skete. Fejlmeddelelser er guld — kopiér dem ind i din næste prompt.</p>
       </div>
       <div class="end-point">
-        <span class="num">02 / HVIS DU VIL VIDERE</span>
+        <span class="num">02 / BUILD YOUR OWN X</span>
+        <h4>Hele kurset er på GitHub</h4>
+        <p>Repo: <a href="https://github.com/IkkeOmar/gxu-skab-med-ai" target="_blank" style="color:var(--accent); font-family:'JetBrains Mono',monospace; font-weight:700;">github.com/IkkeOmar/gxu-skab-med-ai</a> — forkk det, byg videre, del dit eget.</p>
+      </div>
+      <div class="end-point">
+        <span class="num">03 / HVIS DU VIL VIDERE</span>
         <h4>Alt på GitHub er gratis</h4>
         <p>Delt af folk der elsker at hjælpe. Bidrag selv når du kan — det er sådan du lærer mest.</p>
       </div>
       <div class="end-point">
-        <span class="num">03 / HVIS OPENROUTER DRILLER</span>
+        <span class="num">04 / HVIS OPENROUTER DRILLER</span>
         <h4>Kom til mig</h4>
         <p>Jeg har en gratis nøgle til jer i dag 😼</p>
       </div>
       <div class="end-point">
-        <span class="num">04 / HVIS DU VIL HJEM MED DET</span>
+        <span class="num">05 / HVIS DU VIL HJEM MED DET</span>
         <h4>Scan QR → gem prompts.html</h4>
         <p>Bogmærk det. Brug det i næste uge. Det er dit nye udgangspunkt.</p>
       </div>
