@@ -6,8 +6,9 @@ Målgruppe: 7.-8. klasse. Workshoppen er "kom-igang"-tonen — ikke et foredrag.
 
 ## Indhold
 
-- **`index.html`** — Hovedpræsentationen. Åbn den i browseren, tryk F11 for fuld skærm, brug pil-tasterne til at navigere.
+- **`index.html`** — Hovedpræsentationen. Åbn den i browseren, tryk F11 for fuld skærm, brug pil-tasterne til at navigere. Responsiv — virker også på telefon (vertikal scroll + tap-knap).
 - **`prompts.html`** — Den side QR-koden peger på. 4 projekt-prompts (hjemmeside / webshop / app / spil) som eleverne kan kopiere.
+- **`mobile.html`** — Elev-guide designet til telefonen. Lodret scroll, forklarer værktøjer, prompting, de 4 projekter, og hvordan man giver sin AI-agent adgang til GitHub.
 - **`assets/`** — Billeder, videoer og QR-kode.
 
 ## Slides

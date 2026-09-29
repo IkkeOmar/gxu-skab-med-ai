@@ -178,6 +178,61 @@
   .slide-video { padding: 0; }
   .slide-video video { width: 100%; height: 100%; object-fit: cover; }
   .slide-video .overlay { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); background: rgba(11,13,23,0.85); padding: 14px 28px; border-radius: 999px; border: 1px solid var(--glass-border); font-size: 18px; backdrop-filter: blur(10px); }
+
+  /* Mobile fallback — when phone is the only screen we have */
+  @media (max-width: 768px) {
+    html, body { overflow-y: auto; }
+    .deck { width: 100%; height: auto; min-height: 100vh; }
+    .slide {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      min-height: 100vh;
+      padding: 40px 20px;
+      opacity: 1;
+      pointer-events: auto;
+      display: none;
+    }
+    .slide.active { display: flex; }
+    h1 { font-size: clamp(32px, 9vw, 48px); }
+    h2 { font-size: clamp(24px, 7vw, 36px); }
+    h3 { font-size: clamp(18px, 5vw, 24px); }
+    p, li { font-size: 16px; line-height: 1.5; }
+    .slide-cover { grid-template-columns: 1fr; gap: 24px; padding: 20px; }
+    .slide-about { grid-template-columns: 1fr; gap: 24px; padding: 20px; text-align: left; }
+    .about-left { text-align: center; }
+    .about-left .pic-stack { max-width: 280px; margin: 0 auto; }
+    .slide-glossary { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+    .glossary-visual { max-height: 220px; }
+    .slide-principles { padding: 30px 20px; }
+    .principles-grid { grid-template-columns: 1fr; gap: 14px; }
+    .slide-tools { padding: 30px 20px; }
+    .slide-picks { padding: 30px 20px; }
+    .pick-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .slide-prompting { padding: 30px 20px; }
+    .slide-goodbye { padding: 30px 20px; }
+    .nav-hint { display: none; }
+    .mobile-tap {
+      display: block;
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background: rgba(124,92,252,0.2);
+      border: 1px solid var(--purple);
+      border-radius: 999px;
+      color: var(--purple);
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 99;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+  @media (min-width: 769px) {
+    .mobile-tap { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -192,7 +247,8 @@
       <p style="font-size:22px; color:var(--muted); max-width:520px;">En dag hvor vi ikke snakker om AI — vi bygger med den.</p>
       <div class="meta">
         <strong>Omar Jennane</strong> · Underviser<br>
-        <span>Onsdag d. 30. september 2026</span>
+        <span>Onsdag d. 30. september 2026</span><br>
+        <a href="mobile.html" style="display:inline-block; margin-top:12px; padding:8px 14px; background:rgba(124,92,252,0.15); border:1px solid var(--purple); border-radius:999px; color:var(--purple); font-size:13px; font-weight:600; text-decoration:none;">📱 Elev-guide til mobilen</a>
       </div>
     </div>
     <div class="cover-right">
@@ -439,6 +495,7 @@
 
 <div class="progress" id="progress"></div>
 <div class="nav-hint">← / → &nbsp;·&nbsp; SPACE &nbsp;·&nbsp; F = fullscreen</div>
+<div class="mobile-tap" id="mobileTap">Næste slide</div>
 
 <script>
   const deck = document.getElementById('deck');
@@ -489,6 +546,24 @@
     if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
     touchStart = null;
   });
+
+  // Mobile tap button (only on touch devices)
+  const mobileTap = document.getElementById('mobileTap');
+  if (mobileTap) {
+    mobileTap.addEventListener('click', () => goTo(current + 1));
+    // update label as slides progress
+    const updateTapLabel = () => {
+      mobileTap.textContent = current < total ? `Næste slide (${current}/${total})` : 'Tilbage til start';
+    };
+    updateTapLabel();
+    const origGo = goTo;
+    // patch goTo to refresh label
+    goTo = function(n) { origGo(n); updateTapLabel(); };
+    // tap on last slide returns to start
+    mobileTap.addEventListener('click', () => {
+      if (current === total) goTo(1);
+    });
+  }
 
   goTo(1);
 </script>
