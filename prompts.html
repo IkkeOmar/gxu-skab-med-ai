@@ -416,9 +416,95 @@ SÅDAN VIL JEG GERNE HAVE AT DU ARBEJDER:
 Når du er klar: bekræft at du har forstået, og stil mig dit første spørgsmål.</div>
   <button class="copy-btn" onclick="copy(this)" style="margin-bottom: 48px;">KOPIÉR "FØRSTE PROMPT"</button>
 
+  <!-- HURTIGE PROMPTS (drop-pocket reference) -->
+  <h2><span class="num">03</span>Hurtige prompts — drop-pocket reference</h2>
+  <p style="color:var(--ink-2); margin-bottom: 24px;">Når du ikke gider læse hele siden — så brug en af disse fire. De dækker 90% af hvad du får brug for i en workshop.</p>
+
+  <div class="grid">
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/><circle cx="12" cy="12" r="4"/></svg></span>
+      <h3>Brainstorm</h3>
+      <span class="tag">NÅR DU IKKE VED HVAD DU VIL BYGGE</span>
+      <p>Find på 10 idéer sammen med AI'en. Vælg den du har lyst til at bygge videre på.</p>
+      <div class="prompt-box">Jeg er [din alder] år og skal finde på et lille projekt jeg kan bygge i løbet af en eftermiddag.
+
+HVAD JEG KAN LIDE: [fx gaming, mode, musik, sport, dyr, mad, film, vittigheder — skriv 2-3 ting].
+HVAD JEG ER GOD TIL: [fx tegne, forklare ting, snakke med folk, organisere, finde på navne].
+
+GIV MIG:
+1. 10 konkrete projekt-idéer jeg kunne bygge (hjemmeside, webshop, app eller spil — vælg selv hvad der passer)
+2. For hver idé: sværhedsgrad (NEM/MELLEM/SVÆR) og hvor lang tid det tager
+3. Marker de 3 bedste med en stjerne — dem hvor jeg med størst sandsynlighed får noget der virker i dag
+
+REGLER:
+- Ingen projekter der kræver at jeg har en server eller betaler for noget
+- Ingen projekter der kræver at jeg er fyldt 18
+- Giv mig ÉN anbefaling til sidst, ikke en menu</div>
+      <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR BRAINSTORM</button>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
+      <h3>Forklar kode</h3>
+      <span class="tag">NÅR DU IKKE FORSTÅR</span>
+      <p>AI'en siger noget du ikke fatter. Smid koden ind og få den forklaret i normalt sprog.</p>
+      <div class="prompt-box">Forklar denne kode til mig som om jeg er 13 år og aldrig har programmeret før.
+
+REGLER:
+- En sætning ad gangen — ikke et helt afsnit på én gang
+- Hvis du bruger et ord jeg ikke kender, så forklar det i parentes
+- Til sidst: giv mig ÉN analogi fra hverdagen der viser HVAD koden gør
+
+KODE:
+[indsæt koden her]</div>
+      <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR "FORKLAR KODE"</button>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M4 20L20 4"/><circle cx="12" cy="12" r="9"/></svg></span>
+      <h3>"Det virker ikke"</h3>
+      <span class="tag">FEJLFINDING</span>
+      <p>Når du har en fejl og ikke ved hvorfor. Smid fejlen ind så hjælper AI'en dig.</p>
+      <div class="prompt-box">Jeg har en fejl i min kode, og jeg ved ikke hvorfor den sker.
+
+HVAD JEG PRØVER AT GØRE: [forklar kort med dine egne ord — fx "når jeg trykker på knappen skal der komme en boks frem, men intet sker"]
+
+HVAD DER STOD PÅ SKÆRMEN DA DET GIK GALT (fejlmeddelelsen):
+[indsæt fejlmeddelelsen HER — kopiér ALT, også det du ikke forstår]
+
+HVAD JEG HAR PRØVET: [fx "jeg har genstartet programmet" eller "jeg har ikke prøvet noget endnu fordi jeg er bange for at ødelægge det mere"]
+
+GIV MIG:
+1. Hvad fejlen betyder i almindeligt sprog (1-2 sætninger)
+2. Den mest sandsynlige årsag
+3. PRÆCIS hvad jeg skal gøre nu (ét skridt ad gangen, ikke hele løsningen på én gang)</div>
+      <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR FEJLFINDER</button>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg></span>
+      <h3>Refactor / gør det pænere</h3>
+      <span class="tag">NÅR DET VIRKER MEN ER GRIMT</span>
+      <p>Det virker, men du forstår det ikke selv. Få AI'en til at skrive det om så det er læseligt.</p>
+      <div class="prompt-box">Jeg har noget kode der virker, men som er rodet. Gør den pænere uden at ændre hvad den gør.
+
+REGLER:
+- Behold præcis samme funktionalitet — kun struktur og navne må ændres
+- Giv koden nye navne der forklarer hvad den gør (på dansk eller engelsk — vælg selv)
+- Tilføj korte kommentarer der forklarer HVAD hver sektion gør (HVAD, ikke HVORDAN)
+- Ingen smarte tricks. Ingen "forbedringer" jeg ikke bad om
+
+KODE:
+[indsæt din rodede kode her]</div>
+      <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR REFACTOR</button>
+    </div>
+
+  </div>
+
   <!-- GITHUB ADGANG -->
   <div class="github-block">
-    <h2><span class="num">03</span>GitHub — sådan logger du ind og laver en token</h2>
+    <h2><span class="num">04</span>GitHub — sådan logger du ind og laver en token</h2>
     <p class="lead">Hermes bruger GitHub til at gemme dit projekt. Du skal bruge en "Personal Access Token" — det er som en adgangskode, bare mere sikker. Følg guiden her. Eller bed AI'en om hjælp (det er det de er gode til).</p>
 
     <ol>
@@ -461,7 +547,7 @@ Giv mig det PRÆCISE næste skridt — ikke en generel guide. Fortæl mig HVAD j
     <button class="copy-btn" onclick="copy(this)" style="background: var(--accent-3);">KOPIÉR "HJÆLP-MIG-PROMPT"</button>
   </div>
 
-  <h2 style="margin-top: 48px;"><span class="num">04</span>Vil du lære mere? Læs disse skills</h2>
+  <h2 style="margin-top: 48px;"><span class="num">05</span>Vil du lære mere? Læs disse skills</h2>
   <p style="color:var(--ink-2); margin-bottom: 16px;">Når du er klar til at gå dybere, så læs de her 5 skills — de er skrevet til at du kan blive god til Hermes på egen hånd.</p>
 
   <div class="grid">

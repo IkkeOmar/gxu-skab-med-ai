@@ -598,6 +598,48 @@
     margin-bottom: 4px;
   }
 
+  /* CTA-knap i QR-bokse: skubber direkte til prompts.html */
+  .qr-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 12px 20px;
+    background: var(--accent);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+  }
+  .qr-cta:hover {
+    background: var(--accent-3);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .qr-cta:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+  .qr-cta .arrow {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .qr-or {
+    margin-top: 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
   /* ============================================ */
   /* SLIDE 5 — Prompts / Trash in/out               */
   /* ============================================ */
@@ -940,20 +982,20 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px;
+    padding: 12px;
     background: var(--bg-2);
     border: 2px solid var(--line);
   }
   .end-qr img {
-    width: 180px;
+    width: 150px;
     background: var(--ink);
-    padding: 10px;
+    padding: 8px;
     border: 2px solid var(--ink);
   }
   .end-qr p {
-    margin-top: 10px;
+    margin-top: 8px;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 11px;
     font-family: "JetBrains Mono", monospace;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1087,7 +1129,7 @@
       <div class="map-card" data-jump="7"><span class="num">6</span><h4>Værktøjerne</h4><p>Det vi har installeret</p></div>
       <div class="map-card" data-jump="8"><span class="num">7</span><h4>Vælg projekt</h4><p>Site · Webshop · App · Spil</p></div>
       <div class="map-card" data-jump="9"><span class="num">8</span><h4>Go build</h4><p>Og så er det bare at gå i gang</p></div>
-      <div class="map-card scan" data-jump="9"><span class="num">→</span><h4>Scan QR</h4><p>Få prompts med hjem</p></div>
+      <a href="prompts.html" class="map-card scan"><span class="num">→</span><h4>Få prompts med hjem</h4><p>Åbn prompts.html — eller scan QR på slide 8</p></a>
     </div>
   </section>
 
@@ -1244,6 +1286,8 @@
         <strong>SCAN MIG</strong>
         Vælg dit projekt og få en prompt at kopiere
       </div>
+      <a href="prompts.html" class="qr-cta"><span>ELLER ÅBN HER</span><span class="arrow">→</span></a>
+      <div class="qr-or">eller scan koden med mobilen</div>
     </div>
   </section>
 
@@ -1369,6 +1413,7 @@
         <strong>SCAN QR-KODEN</strong>
         <span>Få 4 færdige prompts — én til hvert projekt</span>
       </div>
+      <a href="prompts.html" class="qr-cta"><span>ELLER ÅBN HER</span><span class="arrow">→</span></a>
     </div>
   </section>
 
@@ -1407,6 +1452,7 @@
     <div class="end-qr">
       <img src="assets/qr.png" alt="QR kode">
       <p>SCAN OG GEM</p>
+      <a href="prompts.html" class="qr-cta" style="margin-top:14px;"><span>ELLER ÅBN HER</span><span class="arrow">→</span></a>
     </div>
   </section>
 
