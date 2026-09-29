@@ -31,7 +31,12 @@
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 48px; }
   .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; cursor: pointer; transition: all 0.2s ease; position: relative; }
   .card:hover { transform: translateY(-4px); border-color: var(--purple); box-shadow: 0 12px 32px rgba(124,92,252,0.2); }
-  .card-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+  .card-icon { font-size: 0; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; min-height: 60px; }
+  .card-icon svg { width: 56px; height: 56px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .grid > .card:nth-child(1) .card-icon svg { color: var(--cyan); }
+  .grid > .card:nth-child(2) .card-icon svg { color: var(--green); }
+  .grid > .card:nth-child(3) .card-icon svg { color: var(--pink); }
+  .grid > .card:nth-child(4) .card-icon svg { color: var(--yellow); }
   .card h3 { font-size: 24px; margin-bottom: 8px; color: var(--text); }
   .card .tag { display: inline-block; padding: 4px 10px; background: var(--purple); color: white; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 12px; }
   .card p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
@@ -67,7 +72,7 @@
   <div class="grid">
 
     <div class="card" onclick="toggle(this)">
-      <span class="card-icon">🌐</span>
+      <span class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
       <h3>Hjemmeside</h3>
       <span class="tag">Nem</span>
       <p>En simpel side på nettet. Om dig, en hobby, eller hvad som helst.</p>
@@ -84,7 +89,7 @@ Kan du give mig en trin-for-trin plan jeg kan følge på 1 time, uden at jeg ska
     </div>
 
     <div class="card" onclick="toggle(this)">
-      <span class="card-icon">🛒</span>
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3h2l3 12h12l2-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span>
       <h3>Webshop</h3>
       <span class="tag">Mellem</span>
       <p>Sælg noget online. Sticker, tøj, digitalt — det bestemmer du.</p>
@@ -106,7 +111,7 @@ Vær ærlig om hvad der er svært vs. nemt.</div>
     </div>
 
     <div class="card" onclick="toggle(this)">
-      <span class="card-icon">📱</span>
+      <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
       <h3>App</h3>
       <span class="tag">Svær</span>
       <p>En app til telefonen. Vælg Android eller iOS — det påvirker værktøjet.</p>
@@ -130,7 +135,7 @@ Lad være med at overvælde mig — start småt.</div>
     </div>
 
     <div class="card" onclick="toggle(this)">
-      <span class="card-icon">🎮</span>
+      <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 12h4M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg></span>
       <h3>Spil</h3>
       <span class="tag">Mellem</span>
       <p>Et spil! Browser, mobil, computer — du bestemmer platformen.</p>
