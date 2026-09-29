@@ -1013,11 +1013,69 @@
     margin-bottom: 36px;
     font-family: "JetBrains Mono", monospace;
   }
+  .byox-ref {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--bg-2);
+    border: 2px solid var(--accent);
+    border-left: 6px solid var(--accent);
+    padding: 16px 22px;
+    margin: 0 auto 32px;
+    max-width: 720px;
+    text-align: left;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+  .byox-ref:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .byox-ref:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+  .byox-ref .num {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .byox-ref strong {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    word-break: break-all;
+  }
+  .byox-ref .byox-sub {
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  body.vision .byox-ref .byox-sub { font-size: clamp(13px, 1.4vw, 16px); }
+  body.vision .byox-ref strong { font-size: clamp(14px, 1.5vw, 18px); }
+  body.vision .byox-ref { padding: 12px 16px; margin-bottom: 14px; }
+  body.vision .slide-end { padding-top: 18px; }
+  body.vision .slide-end .lead { margin-bottom: 14px; }
+  body.vision .slide-end .end-points { gap: 6px; margin-bottom: 8px; }
+  body.vision .slide-end .end-point { padding: 9px; }
+  body.vision .slide-end .end-point h4 { margin-bottom: 2px; }
+  body.vision .slide-end .end-qr { padding: 4px 8px; gap: 1px; }
+  body.vision .slide-end .end-qr img { width: 70px; height: 70px; }
+  body.vision .slide-end .end-qr .qr-cta { padding: 4px 8px; font-size: 10px; margin-top: 3px !important; }
+  body.vision .slide-end .end-qr p { font-size: 9px; line-height: 1.2; }
+  body.vision .slide-end h1 { margin-bottom: 6px; }
+  body.vision .slide-end .label-tag { padding: 3px 10px; font-size: 10px; }
   .end-points {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-bottom: 24px;
+    gap: 12px;
+    margin-bottom: 10px;
     text-align: left;
   }
   .end-points .end-point:nth-child(4),
@@ -1027,49 +1085,50 @@
   .end-point {
     background: var(--bg-2);
     border: 2px solid var(--line);
-    padding: 20px;
+    padding: 14px;
   }
   .end-point .num {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     display: block;
   }
   .end-point h4 {
-    font-size: 17px;
-    margin-bottom: 6px;
+    font-size: 16px;
+    margin-bottom: 4px;
     font-weight: 700;
   }
   .end-point p {
     color: var(--ink-2);
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 13px;
+    line-height: 1.4;
   }
   .end-qr {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 12px;
-    gap: 3px;
+    padding: 8px 10px;
+    gap: 0;
     background: var(--bg-2);
     border: 2px solid var(--line);
   }
   .end-qr img {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     background: var(--ink);
-    padding: 5px;
+    padding: 4px;
     border: 2px solid var(--ink);
   }
   .end-qr p {
-    margin-top: 4px;
+    margin-top: 2px;
     color: var(--muted);
-    font-size: 11px;
+    font-size: 9px;
+    line-height: 1.15;
     font-family: "JetBrains Mono", monospace;
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
   }
 
@@ -1513,6 +1572,11 @@
     <span class="label-tag orange">SLIDE 09 · GO BUILD</span>
     <h1 style="margin-top:14px;">Build your own <span class="accent-word">X</span></h1>
     <p class="lead">Fra nul til noget der virker. Hjemmeside, webshop, app eller spil. Jeg kigger rundt — spørg når I er kørt fast.</p>
+    <a class="byox-ref" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener">
+      <span class="num">INSPIRATION · 550.000+ STJERNER · CC0</span>
+      <strong>github.com/codecrafters-io/build-your-own-x ↗</strong>
+      <span class="byox-sub">30+ trin-for-trin guides til at bygge teknologi fra bunden — 3D-renderer, database, spil, webserver, Git, OS, programmeringssprog. Vælg én, og lad AI hjælpe dig med koden undervejs.</span>
+    </a>
     <div class="end-points">
       <div class="end-point">
         <span class="num">01 / HVIS AI DRILLER</span>
@@ -1547,8 +1611,7 @@
     </div>
     <div class="end-qr">
       <img src="assets/qr.png" alt="QR kode">
-      <p>SCAN OG GEM</p>
-      <a href="prompts.html" class="qr-cta" style="margin-top:14px;"><span>ELLER ÅBN HER</span><span class="arrow">→</span></a>
+      <a href="prompts.html" class="qr-cta" style="margin-top:10px;"><span>ÅBN PROMPTS</span><span class="arrow">→</span></a>
     </div>
   </section>
 

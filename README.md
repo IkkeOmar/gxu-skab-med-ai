@@ -27,7 +27,7 @@ Målgruppe: 7.-8. klasse. Workshoppen er "kom-igang"-tonen — ikke et foredrag.
 6. Sådan snakker du med en AI (trash in / trash out)
 7. Værktøjerne (OpenRouter, GitHub, VSCode, Hermes) — **alle 4 er klikbare links til deres hjemmesider**
 8. Vælg dit projekt + QR-kode + CTA-knap
-9. Go build + **6 end-points** + QR-kode + CTA-knap
+9. Go build + **inspirations-link til codecrafters-io/build-your-own-x** + **6 end-points** + QR-kode + CTA-knap
 
 Alle slides med QR-kode har en orange **"ELLER ÅBN HER →"** CTA-knap ved siden af, så man ikke behøver at scanne for at komme til `prompts.html`.
 
