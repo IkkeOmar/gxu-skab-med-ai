@@ -461,12 +461,103 @@ Giv mig det PRÆCISE næste skridt — ikke en generel guide. Fortæl mig HVAD j
     <button class="copy-btn" onclick="copy(this)" style="background: var(--accent-3);">KOPIÉR "HJÆLP-MIG-PROMPT"</button>
   </div>
 
+  <h2 style="margin-top: 48px;"><span class="num">04</span>Vil du lære mere? Læs disse skills</h2>
+  <p style="color:var(--ink-2); margin-bottom: 16px;">Når du er klar til at gå dybere, så læs de her 5 skills — de er skrevet til at du kan blive god til Hermes på egen hånd.</p>
+
+  <div class="grid">
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span>
+      <h3>hermes-agent</h3>
+      <span class="tag">START HER</span>
+      <p>Hele Hermes-manualen. CLI, slash-kommandoer, providers, værktøjer, hukommelse, cron, profiler — alt.</p>
+      <div class="prompt-box" style="max-height: 160px;">HVAD DU LÆRER:
+- Alle kommandoer: `hermes`, `hermes chat -q`, `hermes setup`, `hermes model`, `hermes doctor`
+- Slash-kommandoer: /new, /clear, /retry, /undo, /compact, /branch, /yolo, /model, /skills
+- 20+ AI-udbydere: OpenRouter, Anthropic, DeepSeek, Gemini, Kimi, GitHub Copilot, OpenAI
+- Gateway til Telegram/Discord — kør Hermes fra din telefon
+- Cron jobs: planlæg opgaver der kører automatisk
+- Memory: husk ting på tværs af sessioner
+- Profiler: flere Hermes-instanser med hver sin konfiguration
+
+HVORNÅR DU BRUGER DET: Første gang du installerer. Når du er i tvivl om en kommando. Når du vil sætte noget op der kører automatisk.</div>
+      <a href="cheatsheet.html" class="card-cta" style="display:block; text-align:center; padding: 12px; background: var(--accent); color: var(--ink); border: 2px solid var(--ink); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-decoration: none; box-shadow: 3px 3px 0 var(--ink);">ÅBN CHEAT SHEET →</a>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h4M18 12h4M12 2v4M12 18v4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/><circle cx="12" cy="12" r="4"/></svg></span>
+      <h3>claude-code</h3>
+      <span class="tag">CLI-AGENT</span>
+      <p>Hvis du vil bruge Claude Code CLI i stedet for Hermes — print mode vs interaktiv, worktrees, MCP.</p>
+      <div class="prompt-box" style="max-height: 160px;">HVAD DU LÆRER:
+- Print mode (`-p`) til one-shot opgaver der afslutter selv
+- Interaktiv mode i tmux til samtaler der varer timer
+- Worktrees: parallel arbejde uden at rod i hinandens filer
+- MCP servers: koble Claude sammen med databaser, GitHub, Puppeteer
+- Slash-kommandoer: /compact, /review, /plan, /init, /memory
+- CLAUDE.md: projekthukommelse der loader automatisk
+
+HVORNÅR DU BRUGER DET: Når du vil have Claude til at skrive/store kode, og du vil have det i en terminal i stedet for en chat.</div>
+      <a href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" class="card-cta" style="display:block; text-align:center; padding: 12px; background: var(--accent-2); color: var(--bg); border: 2px solid var(--accent-2); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-decoration: none; box-shadow: 3px 3px 0 var(--ink);">ÅBN CLAUDE DOCS →</a>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></span>
+      <h3>minimax-code-workflow</h3>
+      <span class="tag">LANG KODE-OPGAVE</span>
+      <p>MiniMax Code 2.0's arbejdsmetode — Goal Mode, Plan Mode, browser-in-the-loop. Til opgaver der tager timer.</p>
+      <div class="prompt-box" style="max-height: 160px;">HVAD DU LÆRER:
+- Goal Mode: sæt et mål med success-kriterier, AI'en arbejder på det
+- Plan Mode: skriv en plan først, få godkendelse, så eksekvér
+- Browser-in-the-loop: lad AI'en klikke rundt på en hjemmeside for dig
+- Remote control: send opgaver fra telefonen via Telegram
+- Anti-patterns der får lang kode til at fejle
+
+HVORNÅR DU BRUGER DET: Når du bygger noget der tager mere end 30 min. Når du er bange for at miste overblikket.</div>
+      <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" class="card-cta" style="display:block; text-align:center; padding: 12px; background: var(--good); color: var(--bg); border: 2px solid var(--good); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-decoration: none; box-shadow: 3px 3px 0 var(--ink);">ÅBN HERMES DOCS →</a>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg></span>
+      <h3>minimax-upgrades</h3>
+      <span class="tag">MODEL-PROFIL</span>
+      <p>MiniMax-modellens styrker og faldgruber. Lær at skrive prompts der udnytter hvad den er god til.</p>
+      <div class="prompt-box" style="max-height: 160px;">HVAD DU LÆRER:
+- Hvad MiniMax er god til (kode, struktur, lange opgaver)
+- Hvad den ikke er god til (nøjagtig tal-håndtering, ny viden)
+- Hvordan du strukturerer prompts så MiniMax klarer sig bedst
+- Hvornår du skal skifte til en anden model
+
+HVORNÅR DU BRUGER DET: Når du har kørt fast med MiniMax og ikke forstår hvorfor. Når du vil finjustere dine prompts.</div>
+      <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" class="card-cta" style="display:block; text-align:center; padding: 12px; background: var(--accent-3); color: var(--ink); border: 2px solid var(--accent-3); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-decoration: none; box-shadow: 3px 3px 0 var(--ink);">ÅBN HERMES DOCS →</a>
+    </div>
+
+    <div class="card" onclick="toggle(this)">
+      <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></span>
+      <h3>hermes-companion</h3>
+      <span class="tag">OPSÆTNING</span>
+      <p>Alt omkring første installation, providers, API-nøgler og de første skridt med Hermes.</p>
+      <div class="prompt-box" style="max-height: 160px;">HVAD DU LÆRER:
+- Første installation: `curl | bash` + opsætningsguide
+- Hvor du får API-nøgler (OpenRouter, Anthropic, etc.)
+- Hvordan du konfigurerer din første udbyder
+- Fejlfinding når noget ikke virker første gang
+- ~/.hermes/config.yaml og ~/.hermes/.env
+
+HVORNÅR DU BRUGER DET: Første dag du installerer Hermes. Når du skifter computer. Når du vil tilføje en ny AI-udbyder.</div>
+      <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" class="card-cta" style="display:block; text-align:center; padding: 12px; background: var(--ink); color: var(--accent-3); border: 2px solid var(--ink); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-decoration: none; box-shadow: 3px 3px 0 var(--accent);">ÅBN DOCS →</a>
+    </div>
+
+  </div>
+
   <div class="footer">
     <p>Hvis du vil have <strong>ubegrænset</strong> AI i VSCode: spørg Omar om en OpenRouter-nøgle 😼</p>
     <p style="margin-top:14px;">
       <a href="index.html">← PRÆSENTATION</a>
       ·
       <a href="mobile.html">ELEV-GUIDE</a>
+      ·
+      <a href="cheatsheet.html">CHEAT SHEET</a>
       ·
       <a href="https://github.com/IkkeOmar/gxu-skab-med-ai">GITHUB</a>
     </p>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes — Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-2: #ffffff;
+    --ink: #0a0a0a;
+    --ink-2: #2a2a28;
+    --muted: #6b6b66;
+    --accent: #ff5b1f;
+    --accent-2: #0e7c8a;
+    --accent-3: #facc15;
+    --good: #1a7a3f;
+    --danger: #d23f3f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  body {
+    min-height: 100vh;
+    padding: max(20px, env(safe-area-inset-top)) 20px max(80px, env(safe-area-inset-bottom)) 20px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  header { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--ink); }
+  .pill {
+    display: inline-block; padding: 5px 10px;
+    background: var(--accent); color: var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 6px; }
+  h1 .accent-word { color: var(--accent); font-style: italic; }
+  .subtitle { color: var(--ink-2); font-size: 15px; font-family: "JetBrains Mono", monospace; }
+
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 2px solid var(--ink);
+    padding: 10px 20px;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    z-index: 99;
+    padding-top: max(10px, env(safe-area-inset-top));
+  }
+  .topbar a {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 6px 12px;
+    border: 2px solid var(--ink);
+    background: var(--bg-2);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .topbar a:hover { background: var(--accent); }
+  .topbar .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255, 91, 31, 0.55);
+    animation: breathe 4s ease-in-out infinite;
+    margin-right: 8px;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 91, 31, 0.55); }
+    50% { transform: scale(1.4); box-shadow: 0 0 0 8px rgba(255, 91, 31, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .topbar .dot { animation: none; }
+  }
+
+  main { padding-top: 64px; }
+
+  .section { margin-bottom: 32px; }
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--ink);
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  h2 .num {
+    font-family: "JetBrains Mono", monospace;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  h2 .hint {
+    margin-left: auto;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .cmd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .cmd {
+    background: var(--bg-2);
+    border: 2px solid var(--ink);
+    padding: 12px 14px;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  }
+  .cmd:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .cmd:active { transform: scale(0.985); }
+  .cmd .slash {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+  .cmd .what {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.45;
+  }
+  .cmd .what strong { color: var(--ink); font-weight: 700; }
+
+  .section-intro {
+    color: var(--ink-2);
+    font-size: 14px;
+    margin-bottom: 14px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .flag-list {
+    background: var(--ink);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .flag-list .line { margin-bottom: 4px; }
+  .flag-list .line:last-child { margin-bottom: 0; }
+  .flag-list code {
+    color: var(--accent-3);
+    background: var(--ink-2);
+    padding: 1px 6px;
+    font-weight: 600;
+  }
+  .flag-list .comment { color: var(--bg); opacity: 0.7; }
+
+  .provider-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .provider {
+    background: var(--bg-2);
+    border: 2px solid var(--ink);
+    padding: 12px;
+  }
+  .provider .name {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .provider .desc {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .provider:nth-child(1) .name { color: var(--accent-2); }
+  .provider:nth-child(4) .name { color: var(--good); }
+  .provider:nth-child(7) .name { color: var(--danger); }
+
+  .tips {
+    background: var(--accent-3);
+    border: 2px solid var(--ink);
+    padding: 16px 18px;
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-top: 24px;
+  }
+  .tips h3 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .tips ol {
+    padding-left: 22px;
+    color: var(--ink);
+  }
+  .tips li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .tips li::marker { color: var(--ink); font-weight: 700; }
+  .tips code {
+    font-family: "JetBrains Mono", monospace;
+    background: var(--ink);
+    color: var(--accent-3);
+    padding: 1px 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+  }
+  .footer a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0 6px;
+  }
+  .footer a:hover { color: var(--accent); }
+  .footer p { margin-bottom: 6px; }
+
+  @media (max-width: 600px) {
+    .cmd-grid { grid-template-columns: 1fr; }
+    .provider-list { grid-template-columns: 1fr 1fr; }
+    h2 { font-size: 19px; }
+    h2 .hint { display: none; }
+  }
+  @media (max-width: 380px) {
+    .provider-list { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .topbar, .footer { display: none; }
+    main { padding-top: 0; }
+    body { background: white; padding: 16px; }
+    .cmd { break-inside: avoid; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="dot"></span>
+  <a href="index.html">PRÆSENTATION</a>
+  <a href="mobile.html">ELEV-GUIDE</a>
+  <a href="prompts.html">PROMPTS</a>
+</div>
+
+<main>
+<div class="container">
+  <header>
+    <span class="pill">CHEAT SHEET</span>
+    <h1>Hermes <span class="accent-word">på 1 side</span></h1>
+    <p class="subtitle">De 12 kommandoer du skal kende — bogmærk denne side</p>
+  </header>
+
+  <!-- 01: SLASH COMMANDS -->
+  <section class="section">
+    <h2><span class="num">01</span>Slash-kommandoer <span class="hint">SKRIV I CHAT</span></h2>
+    <p class="section-intro">Skriv disse i Hermes-chat for at styre din session. Tryk Enter efter hver.</p>
+    <div class="cmd-grid">
+      <div class="cmd">
+        <span class="slash">/new</span>
+        <span class="what"><strong>Start forfra</strong> — ny tom session, som om du lige har åbnet programmet.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/clear</span>
+        <span class="what"><strong>Slet skærmen</strong> — samme som /new men bevarer dine indstillinger.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/retry</span>
+        <span class="what"><strong>Send igen</strong> — gentager dit sidste spørgsmål. Brug hvis svaret var dårligt.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/undo</span>
+        <span class="what"><strong>Fortryd</strong> — fjerner det seneste svar fra AI'en. God til at prøve igen.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/compact</span>
+        <span class="what"><strong>Komprimer</strong> — korter konteksten ned. Brug når samtalen bliver langsom.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/branch</span>
+        <span class="what"><strong>Forgren</strong> — prøv en idé uden at miste den originale samtale.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/resume</span>
+        <span class="what"><strong>Genoptag</strong> — vælg en gammel session og fortsæt hvor du slap.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/background</span>
+        <span class="what"><strong>Kør i baggrunden</strong> — start en lang opgave og fortsæt med at arbejde.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/yolo</span>
+        <span class="what"><strong>Spring godkendelser over</strong> — farligt, men hurtigt når du stoler på AI'en.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/model</span>
+        <span class="what"><strong>Skift model</strong> — fx fra hurtig til klog. Vælg hvad der passer til opgaven.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/skills</span>
+        <span class="what"><strong>Se skills</strong> — gennemse de skills du har installeret.</span>
+      </div>
+      <div class="cmd">
+        <span class="slash">/goal</span>
+        <span class="what"><strong>Sæt et mål</strong> — bed AI'en arbejde på noget i baggrunden indtil det er gjort.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02: CLI ONE-LINERS -->
+  <section class="section">
+    <h2><span class="num">02</span>CLI-genveje <span class="hint">TERMINAL</span></h2>
+    <p class="section-intro">I terminalen (det sorte vindue). Skriv disse for at køre ting uden at åbne chatten.</p>
+
+    <div class="flag-list">
+      <div class="line"><code>hermes</code> <span class="comment"># start chat (samme som at åbne programmet)</span></div>
+      <div class="line"><code>hermes chat -q "spørgsmål"</code> <span class="comment"># kør én opgave, få ét svar, luk</span></div>
+      <div class="line"><code>hermes chat -c</code> <span class="comment"># fortsæt den seneste samtale i denne mappe</span></div>
+      <div class="line"><code>hermes chat -r "navn"</code> <span class="comment"># genoptag en gammel session ved navn</span></div>
+      <div class="line"><code>hermes setup</code> <span class="comment"># installationsguide (første gang)</span></div>
+      <div class="line"><code>hermes model</code> <span class="comment"># vælg hvilken AI du vil bruge</span></div>
+      <div class="line"><code>hermes doctor</code> <span class="comment"># tjek om alt virker (kør hvis noget er mærkeligt)</span></div>
+      <div class="line"><code>hermes skills list</code> <span class="comment"># se installerede skills</span></div>
+      <div class="line"><code>hermes cron list</code> <span class="comment"># se planlagte opgaver</span></div>
+      <div class="line"><code>hermes --yolo chat -q "opgave"</code> <span class="comment"># spring godkendelser over (forsigtig!)</span></div>
+    </div>
+  </section>
+
+  <!-- 03: PROVIDERS -->
+  <section class="section">
+    <h2><span class="num">03</span>AI-udbydere <span class="hint">HVAD DU KAN BRUGE</span></h2>
+    <p class="section-intro">Hermes kan skifte mellem disse AI'er. Vælg den der passer til din opgave — eller kør flere.</p>
+    <div class="provider-list">
+      <div class="provider">
+        <div class="name">OpenRouter</div>
+        <div class="desc">Alle modeller ét sted. Betal per brug. Bedst hvis du vil prøve forskellige AI'er.</div>
+      </div>
+      <div class="provider">
+        <div class="name">Anthropic</div>
+        <div class="desc">Claude — klog og god til lange opgaver.</div>
+      </div>
+      <div class="provider">
+        <div class="name">DeepSeek</div>
+        <div class="desc">Gratis og hurtig. God til kode.</div>
+      </div>
+      <div class="provider">
+        <div class="name">GitHub Copilot</div>
+        <div class="desc"> Gratis hvis du har GitHub Student Pack.</div>
+      </div>
+      <div class="provider">
+        <div class="name">Google Gemini</div>
+        <div class="desc">Gratis tier. God til billeder.</div>
+      </div>
+      <div class="provider">
+        <div class="name">Kimi / Moonshot</div>
+        <div class="desc">Gratis kinesisk AI. God til research.</div>
+      </div>
+      <div class="provider">
+        <div class="name">OpenAI Codex</div>
+        <div class="desc">OpenAI's kodemodel. Betalt.</div>
+      </div>
+      <div class="provider">
+        <div class="name">MiniMax</div>
+        <div class="desc">MiniMax's egne modeller via deres portal.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04: TIPS -->
+  <div class="tips">
+    <h3>★ PRO-TIPS TIL DIG DER VIL VIDERE</h3>
+    <ol>
+      <li>Hvis AI'en kører fast: skriv <code>/clear</code> og start forfra med en bedre prompt.</li>
+      <li>Vil du prøve en vild idé uden at miste din samtale? <code>/branch</code> og leg der.</li>
+      <li>Lang kontekst = langsom. Kør <code>/compact</code> hver ~20 spørgsmål.</li>
+      <li>Hvis du får en fejl: kopiér fejlen og giv den til AI'en med "hjælp — her er fejlen: ..."</li>
+      <li>Du kan altid trykke <code>Ctrl+C</code> for at stoppe AI'en midt i en lang opgave.</li>
+      <li>Ctrl+Enter = ny linje i prompten (så du kan skrive et langt brev på flere linjer).</li>
+    </ol>
+  </div>
+
+  <div class="footer">
+    <p>Print denne side (Ctrl+P) hvis du vil have den på papir til din værelsesvæg.</p>
+    <p style="margin-top:10px;">
+      <a href="index.html">← PRÆSENTATION</a>
+      ·
+      <a href="mobile.html">ELEV-GUIDE</a>
+      ·
+      <a href="prompts.html">PROMPTS</a>
+    </p>
+  </div>
+</div>
+</main>
+</body>
+</html>
