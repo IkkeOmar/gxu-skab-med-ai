@@ -218,7 +218,8 @@
       bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
-      padding: 10px 20px;
+      padding: 12px 24px;
+      min-height: 44px;
       background: rgba(124,92,252,0.2);
       border: 1px solid var(--purple);
       border-radius: 999px;
@@ -228,6 +229,20 @@
       z-index: 99;
       cursor: pointer;
       user-select: none;
+      transition: transform 0.15s ease-out, background 0.15s ease-out;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-tap:active {
+      transform: translateX(-50%) scale(0.96);
+      background: rgba(124,92,252,0.35);
+    }
+    .map-card:active {
+      transform: translateY(-1px) scale(0.99);
+      background: rgba(124,92,252,0.12);
+    }
+    /* Hide slide-goodbye QR on very narrow screens, keep text */
+    @media (max-width: 480px) {
+      .end-qr { display: none; }
     }
   }
   @media (min-width: 769px) {
@@ -550,19 +565,23 @@
   // Mobile tap button (only on touch devices)
   const mobileTap = document.getElementById('mobileTap');
   if (mobileTap) {
-    mobileTap.addEventListener('click', () => goTo(current + 1));
-    // update label as slides progress
     const updateTapLabel = () => {
-      mobileTap.textContent = current < total ? `Næste slide (${current}/${total})` : 'Tilbage til start';
+      if (current < total) {
+        mobileTap.textContent = `Næste slide (${current}/${total})`;
+        mobileTap.dataset.action = 'next';
+      } else {
+        mobileTap.textContent = '↻ Tilbage til start';
+        mobileTap.dataset.action = 'restart';
+      }
     };
-    updateTapLabel();
-    const origGo = goTo;
-    // patch goTo to refresh label
-    goTo = function(n) { origGo(n); updateTapLabel(); };
-    // tap on last slide returns to start
     mobileTap.addEventListener('click', () => {
-      if (current === total) goTo(1);
+      if (mobileTap.dataset.action === 'restart') goTo(1);
+      else goTo(current + 1);
     });
+    // patch goTo to refresh label
+    const origGo = goTo;
+    goTo = function(n) { origGo(n); updateTapLabel(); };
+    updateTapLabel();
   }
 
   goTo(1);
