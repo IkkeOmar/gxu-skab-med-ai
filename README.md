@@ -25,7 +25,7 @@ Målgruppe: 7.-8. klasse. Workshoppen er "kom-igang"-tonen — ikke et foredrag.
 4. **Hvad er kodning?** (definition + 4 egenskaber)
 5. Brainstorm med gratis AI + QR-kode + CTA-knap
 6. Sådan snakker du med en AI (trash in / trash out)
-7. Værktøjerne (OpenRouter, GitHub, VSCode, Hermes)
+7. Værktøjerne (OpenRouter, GitHub, VSCode, Hermes) — **alle 4 er klikbare links til deres hjemmesider**
 8. Vælg dit projekt + QR-kode + CTA-knap
 9. Go build + 5 end-points + QR-kode + CTA-knap
 

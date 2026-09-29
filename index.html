@@ -774,10 +774,18 @@
     gap: 16px;
     align-items: flex-start;
     transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
   .tool-card:hover {
     transform: translate(-3px, -3px);
     box-shadow: 6px 6px 0 var(--accent);
+  }
+  .tool-card:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--accent);
   }
   .tool-icon {
     flex-shrink: 0;
@@ -1343,38 +1351,38 @@
       <p>Kort forklaret. Ingen tech-snobs.</p>
     </div>
     <div class="tools-grid">
-      <div class="tool-card">
+      <a href="https://openrouter.ai" target="_blank" rel="noopener" class="tool-card">
         <div class="tool-icon">OR</div>
         <div class="tool-text">
           <h3>OpenRouter</h3>
           <p>Én nøgle der giver adgang til mange AI-modeller. Gratis i dag, så brug det.</p>
-          <span class="why">→ GRATIS AI-TOKENS 😼</span>
+          <span class="why">→ GRATIS AI-TOKENS · ÅBN ↗</span>
         </div>
-      </div>
-      <div class="tool-card">
+      </a>
+      <a href="https://github.com" target="_blank" rel="noopener" class="tool-card">
         <div class="tool-icon">GH</div>
         <div class="tool-text">
           <h3>GitHub</h3>
           <p>Google Drive for kode. Men bedre — millioner af udviklere deler gratis projekter du kan bruge.</p>
-          <span class="why">→ KÆMPE FÆLLESSKAB</span>
+          <span class="why">→ KÆMPE FÆLLESSKAB · ÅBN ↗</span>
         </div>
-      </div>
-      <div class="tool-card">
+      </a>
+      <a href="https://code.visualstudio.com" target="_blank" rel="noopener" class="tool-card">
         <div class="tool-icon">VS</div>
         <div class="tool-text">
           <h3>VSCode</h3>
           <p>Word for kode. Åbner alle slags filer. Her kører du din AI-agent.</p>
-          <span class="why">→ DET STED HVOR MAGIEN SKER</span>
+          <span class="why">→ DET STED HVOR MAGIEN SKER · ÅBN ↗</span>
         </div>
-      </div>
-      <div class="tool-card">
+      </a>
+      <a href="https://hermes-agent.nousresearch.com" target="_blank" rel="noopener" class="tool-card">
         <div class="tool-icon">H</div>
         <div class="tool-text">
           <h3>Hermes</h3>
           <p>Vores AI-agent. Kan styres fra telefonen. Bliver bedre for hver dag du bruger den.</p>
-          <span class="why">→ DIN NYE MAKKER 😼</span>
+          <span class="why">→ DIN NYE MAKKER · ÅBN ↗</span>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
