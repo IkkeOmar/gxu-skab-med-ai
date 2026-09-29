@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GXU — Vælg dit projekt</title>
+<title>GXU — Projekt-prompts & GitHub-adgang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
     --accent: #ff5b1f;
     --accent-2: #0e7c8a;
     --accent-3: #facc15;
+    --accent-4: #c026d3;
     --danger: #d23f3f;
     --good: #1a7a3f;
   }
@@ -29,7 +30,7 @@
     line-height: 1.55;
   }
   body { min-height: 100vh; padding: 24px 24px 80px; }
-  .container { max-width: 980px; margin: 0 auto; }
+  .container { max-width: 1000px; margin: 0 auto; }
   header { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
   header .pill {
     display: inline-block; padding: 5px 10px;
@@ -40,6 +41,8 @@
   }
   h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 8px; }
   h1 .accent-word { color: var(--accent); font-style: italic; }
+  h2 { font-size: 28px; font-weight: 700; margin: 48px 0 16px; letter-spacing: -0.01em; }
+  h2 .num { font-family: "JetBrains Mono", monospace; color: var(--accent); margin-right: 10px; font-size: 22px; }
   .subtitle { color: var(--ink-2); font-size: 17px; font-family: "JetBrains Mono", monospace; }
 
   .guide {
@@ -48,16 +51,18 @@
     padding: 24px;
     margin-bottom: 40px;
   }
-  .guide h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .guide h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; margin-top: 0; }
+  .guide h2 .num { display: none; }
   .guide ol { padding-left: 22px; color: var(--ink-2); }
   .guide li { margin-bottom: 8px; }
   .guide li::marker { color: var(--accent); font-weight: 700; font-family: "JetBrains Mono", monospace; }
+  .guide code { font-family: "JetBrains Mono", monospace; background: var(--bg); padding: 1px 6px; border: 1.5px solid var(--ink); font-size: 13px; }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
   }
   .card {
     background: var(--bg-2);
@@ -127,12 +132,18 @@
     border: 2px solid var(--ink);
     padding: 14px;
     font-family: "JetBrains Mono", monospace;
-    font-size: 13px;
+    font-size: 12.5px;
     white-space: pre-wrap;
     margin-bottom: 12px;
     user-select: all;
-    line-height: 1.5;
+    line-height: 1.55;
+    max-height: 280px;
+    overflow-y: auto;
   }
+  .prompt-box::-webkit-scrollbar { width: 8px; }
+  .prompt-box::-webkit-scrollbar-track { background: var(--ink-2); }
+  .prompt-box::-webkit-scrollbar-thumb { background: var(--accent); }
+
   .copy-btn {
     width: 100%;
     padding: 12px;
@@ -158,6 +169,42 @@
     background: var(--good); color: var(--bg);
   }
 
+  /* GitHub access section */
+  .github-block {
+    background: var(--ink);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 32px;
+    margin: 48px 0;
+    box-shadow: 6px 6px 0 var(--accent);
+  }
+  .github-block h2 { color: var(--bg); margin-top: 0; }
+  .github-block h2 .num { color: var(--accent-3); }
+  .github-block .lead { color: var(--bg); opacity: 0.9; margin-bottom: 24px; font-size: 17px; }
+  .github-block ol { padding-left: 24px; }
+  .github-block ol li { margin-bottom: 14px; line-height: 1.55; }
+  .github-block ol li::marker { color: var(--accent-3); font-weight: 700; font-family: "JetBrains Mono", monospace; }
+  .github-block code {
+    font-family: "JetBrains Mono", monospace;
+    background: var(--ink-2);
+    color: var(--accent-3);
+    padding: 2px 8px;
+    border: 1px solid var(--ink-2);
+    font-size: 13px;
+  }
+  .github-block strong { color: var(--accent-3); }
+  .github-block .warn {
+    background: var(--accent-3);
+    color: var(--ink);
+    padding: 16px;
+    border: 2px solid var(--ink);
+    margin-top: 20px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .github-block .warn::before { content: "⚠ "; }
+
   .footer {
     text-align: center;
     color: var(--muted);
@@ -179,6 +226,7 @@
   @media (max-width: 600px) {
     body { padding: 20px 16px 60px; }
     .grid { grid-template-columns: 1fr; }
+    .github-block { padding: 20px; }
   }
 </style>
 </head>
@@ -187,107 +235,230 @@
   <header>
     <span class="pill">PROJEKT-VÆLGER</span>
     <h1>Vælg dit <span class="accent-word">projekt</span></h1>
-    <p class="subtitle">Find en AI · kopiér prompt · kom i gang</p>
+    <p class="subtitle">Kopiér prompt → åbn AI → erstat [klammer] → kør</p>
   </header>
 
   <div class="guide">
-    <h2>Sådan snakker du med en AI</h2>
+    <h2>Sådan bruger du prompten</h2>
     <ol>
-      <li>Åbn en af de gratis AI'er (knapperne nedenunder)</li>
-      <li>Kopiér prompten der passer til det du vil lave</li>
-      <li>Indsæt den og <strong>udskift det i [klammerne]</strong> med dine egne idéer</li>
-      <li>Læs hvad AI'en siger — er det ikke godt nok? Skriv "gør det bedre" eller "forklar mere"</li>
-      <li>Når du har en plan: spørg AI'en "hvordan kommer jeg i gang helt konkret?"</li>
+      <li>Vælg det projekt der passer dig (Hjemmeside / Webshop / App / Spil)</li>
+      <li>Tryk <strong>KOPIÉR PROMPT</strong> på kortet — den kommer i dit udklipsholder</li>
+      <li>Åbn en af de gratis AI'er (knapperne på kortet — KIMI, DEEPSEEK, Z.AI, GEMINI)</li>
+      <li>Indsæt prompten og <strong>erstat alt i [klammer]</strong> med dine egne ord</li>
+      <li>Læs svaret. Er det ikke godt nok? Skriv <code>gør det bedre</code> eller <code>forklar trin for trin</code></li>
+      <li>Når du har en plan: kopier den ind i Hermes — så bygger din AI koden for dig</li>
     </ol>
   </div>
 
+  <h2><span class="num">01</span>Projekt-prompts</h2>
+  <p style="color:var(--ink-2); margin-bottom: 24px;">Fire projekter. Fire niveauer. Vælg det der passer dig — eller lav din egen version af prompten.</p>
+
   <div class="grid">
 
+    <!-- HJEMMESIDE -->
     <div class="card" onclick="toggle(this)">
       <span class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
       <h3>Hjemmeside</h3>
-      <span class="tag">NEM</span>
-      <p>En simpel side på nettet. Om dig, en hobby, eller hvad som helst.</p>
+      <span class="tag">NEM · 1-2 TIMER</span>
+      <p>En side på internettet om noget du er interesseret i. Skal ikke være perfekt — den skal bare virke.</p>
       <div class="links">
         <a href="https://kimi.moonshot.ai" target="_blank">KIMI</a>
         <a href="https://chat.deepseek.com" target="_blank">DEEPSEEK</a>
         <a href="https://chat.z.ai" target="_blank">Z.AI</a>
         <a href="https://gemini.google.com" target="_blank">GEMINI</a>
       </div>
-      <div class="prompt-box">Hej! Jeg er [din alder] år og har aldrig lavet en hjemmeside før. Jeg vil lave en side om [emne — fx min hund, mit yndlingsspil, en bande]. Siden skal have en forside, lidt info og nogle billeder.
+      <div class="prompt-box">Hej. Jeg hedder [dit navn], er [din alder] år, og jeg har aldrig skrevet en linje kode før. Jeg vil lave en hjemmeside.
 
-Kan du give mig en trin-for-trin plan jeg kan følge på 1 time, uden at jeg skal installere noget svært? Start med det nemmeste værktøj jeg kan bruge direkte i browseren.</div>
+MÅL: En personlig side på internettet som mine venner kan besøge via et link.
+
+EMNE: Siden skal handle om [emne — fx mit keyboard, mit yndlingshold, mine sneakers, mit kæledyr, en hobby]. Vælg noget du godt kan lide at snakke om.
+
+SIDEPLAN — jeg vil have:
+1. En forside med mit navn og ét stort billede
+2. En "om mig"-sektion med 3-4 sætninger
+3. En sektion om [emnet] med en lille liste eller galleri
+4. En kontakt-sektion med min e-mail eller et link til min Instagram
+
+HVAD JEG VIL HAVE DIG TIL:
+- Giv mig en konkret trin-for-trin plan jeg kan følge på 90 minutter
+- Anbefal ÉT gratis værktøj jeg kan bruge direkte i browseren (ingen installation)
+- Forklar HVAD jeg skal gøre på hvert trin — ikke bare HVAD værktøjet hedder
+- Hvis der er 3 gode valg, så anbefal ÉT — ikke en liste
+
+REGLER:
+- Skriv i et sprog en 8.-klasser kan forstå
+- Hvis du nævner et ord jeg ikke kender, så forklar det i parentes
+- Giv mig kun ÉN plan, ikke tre muligheder</div>
       <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR PROMPT</button>
     </div>
 
+    <!-- WEBSHOP -->
     <div class="card" onclick="toggle(this)">
       <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3h2l3 12h12l2-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span>
       <h3>Webshop</h3>
-      <span class="tag">MELLEM</span>
-      <p>Sælg noget online. Sticker, tøj, digitalt — det bestemmer du.</p>
+      <span class="tag">MELLEM · 2-3 TIMER</span>
+      <p>Sælg noget online. Stickers, tøj, digitalt indhold, eller en service. Du bestemmer hvad.</p>
       <div class="links">
         <a href="https://chat.deepseek.com" target="_blank">DEEPSEEK</a>
         <a href="https://chat.z.ai" target="_blank">Z.AI</a>
         <a href="https://chatgpt.com" target="_blank">CHATGPT</a>
         <a href="https://gemini.google.com" target="_blank">GEMINI</a>
       </div>
-      <div class="prompt-box">Hej! Jeg vil starte en lille webshop og sælge [produkt — fx stickers, håndlavede ting, digitalt]. Jeg er [din alder] og har ikke prøvet det før.
+      <div class="prompt-box">Hej. Jeg hedder [dit navn], er [din alder] år, og jeg vil prøve at starte en lille webshop. Jeg har ikke gjort det før.
 
-Giv mig en realistisk plan for:
-1. Hvad jeg SKAL have styr på (lovligt, betaling, levering)
-2. Hvilken platform jeg skal bruge (den nemmeste til en start)
-3. Hvad jeg skal forberede før jeg går live
+PRODUKT: Jeg vil sælge [produkt — fx stickers med mit eget design, håndlavede armbånd, en PDF-guide til noget jeg er god til, en Discord-server med fordele].
 
-Vær ærlig om hvad der er svært vs. nemt.</div>
+MÅL: Jeg vil have én side online i dag med 1-3 produkter, hvor folk kan se dem og skrive til mig for at købe. Jeg tager betaling manuelt (MobilePay) — jeg behøver ikke en betalingsløsning endnu.
+
+GIV MIG EN PLAN FOR:
+1. Hvilken gratis platform jeg skal bruge som nybegynder (anbefal ÉT)
+2. Hvad jeg SKAL have klar før jeg går live (produktbilleder, beskrivelse, pris)
+3. Hvad jeg SKAL være opmærksom på (lovligt i Danmark, moms når jeg tjener over 50.000 kr/år, fortrydelsesret)
+4. Hvor lang tid det realistisk tager fra idé til første salg
+5. ÉT konkret første skridag jeg kan tage nu
+
+REGLER:
+- Vær ærlig om hvad der er nemt vs. svært
+- Hvis noget kræver at jeg er fyldt 18, så sig det højt
+- Giv mig EN plan, ikke en menu af muligheder</div>
       <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR PROMPT</button>
     </div>
 
+    <!-- APP -->
     <div class="card" onclick="toggle(this)">
       <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
       <h3>App</h3>
-      <span class="tag">SVÆR</span>
-      <p>En app til telefonen. Vælg Android eller iOS — det påvirker værktøjet.</p>
+      <span class="tag">SVÆR · 4+ TIMER</span>
+      <p>En app til din telefon. Start med en prototype der viser idéen — du behøver ikke udgive den.</p>
       <div class="links">
         <a href="https://chat.deepseek.com" target="_blank">DEEPSEEK</a>
         <a href="https://kimi.moonshot.ai" target="_blank">KIMI</a>
         <a href="https://chat.z.ai" target="_blank">Z.AI</a>
         <a href="https://gemini.google.com" target="_blank">GEMINI</a>
       </div>
-      <div class="prompt-box">Hej! Jeg vil lave en app til [Android / iOS — vælg en]. Jeg er [din alder] og har ikke lavet apps før.
+      <div class="prompt-box">Hej. Jeg hedder [dit navn], er [din alder] år, og jeg vil lave en simpel app. Jeg har ikke lavet apps før.
 
-Min app skal [gøre X — fx hjælpe mig med at huske ting, vise sjove kattevideoer, tracke min træning].
+APP-IDÉ: Min app skal hjælpe mig med at [gøre X — fx huske mine lektier, finde sjove ting i nærheden, tracke min træning, gemme sjove citater fra venner, finde gode film].
 
-Giv mig en trin-for-trin plan for:
-1. Det nemmeste gratis værktøj at bygge med som nybegynder
-2. Hvad jeg SKAL lære først (og hvad jeg kan springe over)
-3. Hvor lang tid det realistisk tager at lave en brugbar version
+PLATFORM: Jeg vil lave den til [Android / iOS — vælg en]. Jeg har en [Android-telefon / iPhone] jeg kan teste på.
 
-Lad være med at overvælde mig — start småt.</div>
+HVAD JEG IKKE VIL:
+- Jeg vil ikke bruge et år på det
+- Jeg vil ikke lære Swift eller Kotlin i dag
+- Jeg behøver ikke udgive den i App Store — en prototype der kører på min telefon er nok
+
+GIV MIG EN PLAN FOR:
+1. Det NEMMESTE gratis værktøj til en som ikke har kodet før (anbefal ÉT)
+2. De 3 vigtigste funktioner min app SKAL have for at den er brugbar (resten kan vente)
+3. En realistisk tidsplan — hvor mange timer for en brugbar prototype?
+4. Ét lille stykke kode jeg kan kopiere og prøve i dag
+
+REGLER:
+- Start småt. Hellere 3 funktioner der virker end 10 der halvvejs virker
+- Hvis du nævner et værktøj, forklar HVORFOR det er bedst for en nybegynder
+- Hvis der er en "forkert" måde at gøre det på, så advar mig</div>
       <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR PROMPT</button>
     </div>
 
+    <!-- SPIL -->
     <div class="card" onclick="toggle(this)">
       <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 12h4M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg></span>
       <h3>Spil</h3>
-      <span class="tag">MELLEM</span>
-      <p>Et spil! Browser, mobil, computer — du bestemmer platformen.</p>
+      <span class="tag">MELLEM · 2-4 TIMER</span>
+      <p>Lav dit eget spil. Det kan være 2D i browseren — du bestemmer hvad det går ud på.</p>
       <div class="links">
         <a href="https://chat.deepseek.com" target="_blank">DEEPSEEK</a>
         <a href="https://chat.z.ai" target="_blank">Z.AI</a>
         <a href="https://gemini.google.com" target="_blank">GEMINI</a>
         <a href="https://kimi.moonshot.ai" target="_blank">KIMI</a>
       </div>
-      <div class="prompt-box">Hej! Jeg vil lave et spil. Jeg er [din alder] og har ikke lavet spil før, men jeg spiller [dit yndlingsspil] hele tiden.
+      <div class="prompt-box">Hej. Jeg hedder [dit navn], er [din alder] år, og jeg spiller [dit yndlingsspil — fx Minecraft, Valorant, Stardew Valley, Baldur's Gate]. Jeg har aldrig lavet et spil før.
 
-Jeg tænker et spil hvor man [kort beskrivelse — fx løber væk fra monstre, laver mad til kunder, bygger en by].
+SPIL-idé: Et spil hvor man [kort beskrivelse — fx løber væk fra monstre i en forladt skole, laver pizza til kunder før de bliver sure, styrer en by der vokser, kæmper mod andre med kort].
 
-Kan du:
-1. Fortæl mig hvilket gratis værktøj jeg skal bruge (det nemmeste for en nybegynder)
-2. Giv mig en plan for de første 3 ting jeg skal lave
-3. Vis mig ét lille stykke kode jeg kan prøve i dag</div>
+Sådan: Spillet starter simpelt — kun ÉN skærm, ÉN handling, ÉN mål. Ingen levels, ingen historie. Bare kernen af idéen.
+
+GIV MIG:
+1. ÉT gratis værktøj jeg kan bruge som nybegynder (anbefal det bedste, ikke en liste)
+2. En plan for de første 3 ting jeg skal lave i rækkefølge
+3. Ét lille stykke spil-kode jeg kan kopiere ind i værktøjet og se virke i dag (gerne noget der bevæger sig på skærmen)
+4. 5 simple spil-idéer jeg kan vælge imellem (hvis jeg ikke har en selv)
+
+REGLER:
+- Ingen 3D. Ingen avanceret grafik. 2D i browseren er nok
+- Hellere et sjovt lille spil end et halvt ambitiøst
+- Hvis du bruger et ord jeg ikke kender (som "sprite" eller "collision"), forklar det kort</div>
       <button class="copy-btn" onclick="event.stopPropagation(); copy(this)">KOPIÉR PROMPT</button>
     </div>
 
+  </div>
+
+  <h2><span class="num">02</span>Første prompt til Hermes (når du er logget ind)</h2>
+  <p style="color:var(--ink-2); margin-bottom: 16px;">Når du har Hermes kørende på din computer, så start med denne prompt. Den sætter din AI op til at hjælpe dig godt:</p>
+
+  <div class="prompt-box" style="max-height: none;">Hej Hermes. Jeg er [dit navn], [din alder] år, og jeg er ny til at bruge AI til at bygge ting. Jeg skal bruge dig som min makker i dag.
+
+OM MIG:
+- Jeg har aldrig skrevet kode før (eller jeg ved bare lidt)
+- Jeg er god til [fx tegne, snakke med mennesker, forklare ting, finde på idéer, organisere]
+- Jeg er ikke god til [fx holde fokus i lang tid, læse lange tekster, finde ud af hvorfor noget ikke virker]
+
+HVAD VI SKAL LAVE I DAG:
+Vi bygger [vælg: en hjemmeside om X / en lille webshop med Y / en app der Z / et spil hvor W].
+
+SÅDAN VIL JEG GERNE HAVE AT DU ARBEJDER:
+1. Stil mig spørgsmål FØR du begynder at kode, hvis der er noget du er i tvivl om
+2. Giv mig ÉN lille opgave ad gangen — ikke hele projektet på én gang
+3. Når du skriver kode, så forklar kort HVAD hver del gør (1 sætning)
+4. Hvis noget går galt, så spørg mig hvad jeg så på skærmen — ikke bare "fejlfiks"
+5. Hvis du er i tvivl mellem to løsninger, så vælg den simpleste
+
+Når du er klar: bekræft at du har forstået, og stil mig dit første spørgsmål.</div>
+  <button class="copy-btn" onclick="copy(this)" style="margin-bottom: 48px;">KOPIÉR "FØRSTE PROMPT"</button>
+
+  <!-- GITHUB ADGANG -->
+  <div class="github-block">
+    <h2><span class="num">03</span>GitHub — sådan logger du ind og laver en token</h2>
+    <p class="lead">Hermes bruger GitHub til at gemme dit projekt. Du skal bruge en "Personal Access Token" — det er som en adgangskode, bare mere sikker. Følg guiden her. Eller bed AI'en om hjælp (det er det de er gode til).</p>
+
+    <ol>
+      <li><strong>Opret en GitHub-konto</strong> — gå til <code>github.com</code> og tryk <code>Sign up</code>. Brug din egen email. Det er gratis.</li>
+      <li><strong>Bekræft din email</strong> — GitHub sender en mail. Tryk på linket i den.</li>
+      <li><strong>Opret en Personal Access Token</strong>:
+        <ol style="margin-top: 8px;">
+          <li>Log ind på <code>github.com</code></li>
+          <li>Klik på dit profilbillede (øverst til højre) → <code>Settings</code></li>
+          <li>Scroll helt ned i venstre side → <code>&lt;&gt; Developer settings</code></li>
+          <li>Venstre side: <code>Personal access tokens</code> → <code>Tokens (classic)</code></li>
+          <li>Tryk <code>Generate new token</code> → <code>Generate new token (classic)</code></li>
+          <li>Udfyld:
+            <ul style="margin-top: 6px;">
+              <li><strong>Note</strong>: skriv <code>Hermes GXU 2026</code></li>
+              <li><strong>Expiration</strong>: vælg <code>30 days</code></li>
+              <li><strong>Scopes</strong>: sæt kun flueben i <code>repo</code> (fuldt adgang til repositories)</li>
+            </ul>
+          </li>
+          <li>Tryk <code>Generate token</code> nederst</li>
+          <li><strong>VIGTIGT:</strong> kopier tokenen med det samme — den forsvinder fra skærmen, og du kan ikke se den igen. Gem den i en note på din telefon eller i en fil.</li>
+        </ol>
+      </li>
+      <li><strong>Indsæt tokenen i Hermes</strong> — når Hermes spørger efter din GitHub-adgang, indsætter du bare tokenen. Hermes gemmer den sikkert.</li>
+      <li><strong>Opret dit første projekt</strong> — sig til Hermes: <code>"Opret et nyt GitHub-repo der hedder [dit-projekt-navn] og læg en startside i det"</code>. Hermes klarer resten.</li>
+    </ol>
+
+    <div class="warn">Hvis du sidder fast: kopiér hele fejlen (eller hele skærmen) og giv den til din AI med prompten "hjælp mig — her er hvad der står på min skærm: [indsæt]".</div>
+
+    <p style="margin-top: 24px;"><strong>Prompt du kan give AI'en hvis du sidder fast:</strong></p>
+
+    <div class="prompt-box" style="max-height: none; margin-top: 12px;">Jeg prøver at lave en Personal Access Token på GitHub, men jeg er gået i stå.
+
+Hvor jeg er nået: [beskriv kort — fx "jeg er nået til Developer settings men kan ikke finde Personal access tokens" eller "jeg har oprettet en token men ved ikke hvad jeg skal gøre med den"]
+
+Min computer: [Mac / Windows / Chromebook]
+Min browser: [Chrome / Safari / Firefox / andet]
+
+Giv mig det PRÆCISE næste skridt — ikke en generel guide. Fortæl mig HVAD jeg skal klikke på, og HVAD jeg skal forvente at se bagefter.</div>
+    <button class="copy-btn" onclick="copy(this)" style="background: var(--accent-3);">KOPIÉR "HJÆLP-MIG-PROMPT"</button>
   </div>
 
   <div class="footer">
@@ -306,13 +477,18 @@ Kan du:
 <script>
 function copy(btn) {
   const box = btn.previousElementSibling;
+  const originalLabel = btn.dataset.label || btn.textContent.trim();
+  btn.dataset.label = originalLabel;
   navigator.clipboard.writeText(box.textContent.trim()).then(() => {
     btn.textContent = '✓ KOPIERET!';
     btn.classList.add('copied');
     setTimeout(() => {
-      btn.textContent = 'KOPIÉR PROMPT';
+      btn.textContent = originalLabel;
       btn.classList.remove('copied');
     }, 2000);
+  }).catch(() => {
+    btn.textContent = '✗ FEJL — kopiér manuelt';
+    setTimeout(() => { btn.textContent = originalLabel; }, 2000);
   });
 }
 function toggle(card) {
