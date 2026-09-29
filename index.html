@@ -1096,6 +1096,25 @@
     .small { font-size: 11px; }
     .nav-hint, .brand-mark { display: none; }
 
+    /* ============================================ */
+    /* VISION-MODE — desktop-only                   */
+    /* ============================================ */
+    /* Vision-mode er kun til bagerst-i-klassen på desktop
+       med projektor. På telefon giver det ikke mening —
+       der scroller man allerede vertikalt. Skjul indikator,
+       fjern V-hint, og lad mobil-mediaqueryens egne
+       font-sizes vinde (specificiteten her er højere end
+       body.vision). */
+    .vision-indicator { display: none !important; }
+    /* Nulstil vision-sizes tilbage til mobil-størrelser —
+       mere specifik selector vinder over body.vision. */
+    body.vision h1 { font-size: clamp(36px, 10vw, 56px); }
+    body.vision h2 { font-size: clamp(26px, 7vw, 38px); }
+    body.vision h3 { font-size: 18px; }
+    body.vision .cover-left h1 { font-size: clamp(40px, 12vw, 60px); }
+    body.vision .slide-end h1 { font-size: clamp(36px, 10vw, 56px); }
+    body.vision .slide { padding: 48px 22px 80px; }
+
     .slide-cover { grid-template-columns: 1fr; gap: 28px; padding: 20px; }
     .cover-left h1 { font-size: clamp(40px, 12vw, 60px); }
     .cover-left .sub { font-size: 17px; }
@@ -1570,6 +1589,9 @@
       else document.exitFullscreen();
     }
     else if (e.key === 'v' || e.key === 'V') {
+      // Vision-mode er kun til desktop — på telefon giver det ikke mening
+      // da man scroller vertikalt. Tjek vinduesbredde før aktivering.
+      if (window.innerWidth <= 768) return;
       document.body.classList.toggle('vision');
       // Vis en kort pop-up-tekst første gang
       if (document.body.classList.contains('vision')) {

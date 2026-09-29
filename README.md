@@ -45,6 +45,8 @@ Alle slides med QR-kode har en orange **"ELLER ÅBN HER →"** CTA-knap ved side
 
 Tryk `V` på tastaturet for at slå vision-mode til/fra. Alle slides skalerer op så teksten kan læses fra bagerst i klassen (8-10m afstand med projektor). Orange "👁️ VISION MODE" indikator vises i øverste højre hjørne.
 
+**Vision-mode er kun til desktop** (window.innerWidth > 768px). På telefon giver det ikke mening — der scroller man allerede vertikalt, og mobil-mediaqueryens egne font-sizes vinder automatisk. V-tasten ignoreres også på mobil.
+
 | Element | Normal | Vision |
 |---------|--------|--------|
 | H1 (forside + slut) | 88px | 110px |
@@ -53,7 +55,7 @@ Tryk `V` på tastaturet for at slå vision-mode til/fra. Alle slides skalerer op
 | Body / lead | 14-22px | 17-30px |
 | Slide padding | 56×72px | 80×90px |
 
-Alle 9 slides er testet til at passe i 1440×900 viewport uden overflow i både normal og vision-mode.
+Alle 9 slides er testet til at passe i 1440×900 viewport uden overflow i både normal og vision-mode. Mobil-layout (375×667) er upåvirket af vision-mode.
 
 ## Links
 
