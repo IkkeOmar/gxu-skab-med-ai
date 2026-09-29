@@ -109,6 +109,66 @@
     font-weight: 600;
     letter-spacing: -0.01em;
   }
+
+  /* ============================================ */
+  /* VISION-MODE — bagerst-i-klassen læsbarhed      */
+  /* ============================================ */
+  /* Toggle med 'V' på tastatur. Hver størrelse går
+     typisk 25-35% op så teksten kan læses fra 8-10m
+     afstand med projektor. Slå fra igen med 'V'. */
+  body.vision h1 { font-size: clamp(60px, 8vw, 110px); }
+  body.vision h2 { font-size: clamp(40px, 5.5vw, 76px); }
+  body.vision h3 { font-size: clamp(22px, 2.6vw, 32px); }
+  body.vision .cover-left .sub { font-size: clamp(20px, 2vw, 30px); }
+  body.vision .tools-header p,
+  body.vision .pick-header p { font-size: clamp(18px, 2vw, 26px); }
+  body.vision .tool-text p,
+  body.vision .pick-text p { font-size: clamp(16px, 1.8vw, 20px); }
+  body.vision .tool-text h3 { font-size: clamp(22px, 2.4vw, 30px); }
+  body.vision .pill .ptext span { font-size: clamp(15px, 1.7vw, 19px); }
+  body.vision .pill .ptext strong { font-size: clamp(17px, 1.9vw, 22px); }
+  body.vision .vocab p { font-size: clamp(15px, 1.7vw, 19px); }
+  body.vision .coding-def { padding: 26px 32px; }
+  body.vision .coding-def .lead { font-size: clamp(20px, 2.2vw, 28px); }
+  body.vision .coding-def .actual { font-size: clamp(15px, 1.7vw, 19px); }
+  body.vision .qr-box p,
+  body.vision .end-qr p { font-size: clamp(13px, 1.4vw, 16px); }
+  /* ============================================ */
+  /* SLIDE 9 — Vision-mode kompakt                  */
+  /* ============================================ */
+  /* Slide 9 har 6 end-points + QR — meget indhold.
+     I vision-mode gør vi h1 mindre (90px), punkter
+     kompakte, og QR mindre — så alt passer i viewport. */
+  body.vision .slide-end h1 { font-size: clamp(50px, 6vw, 90px); margin-bottom: 10px; }
+  body.vision .slide-end .lead { font-size: clamp(17px, 1.8vw, 22px); margin-bottom: 22px; }
+  body.vision .end-point { padding: 14px; }
+  body.vision .end-point h4 { font-size: clamp(16px, 1.7vw, 20px); margin-bottom: 4px; }
+  body.vision .end-point .num { font-size: clamp(11px, 1.2vw, 13px); }
+  body.vision .end-point p { font-size: clamp(13px, 1.4vw, 16px); line-height: 1.4; }
+  body.vision .end-points { gap: 12px; margin-bottom: 22px; }
+  body.vision .end-qr img { width: 110px; height: 110px; }
+  body.vision .end-qr { padding: 8px 12px; gap: 3px; }
+  body.vision .end-qr .qr-cta { padding: 9px 14px; font-size: 12px; margin-top: 8px !important; }
+  body.vision .pick-card .level,
+  body.vision .pick-cta,
+  body.vision .qr-cta { font-size: clamp(13px, 1.4vw, 16px); padding: 12px 20px; }
+  body.vision .slide { padding: 80px 90px; }
+  body.vision .nav-hint { font-size: 14px; }
+  body.vision .brand-mark { font-size: 13px; }
+
+  .vision-indicator {
+    position: fixed; top: 18px; right: 22px; z-index: 99;
+    display: none;
+    align-items: center; gap: 8px;
+    padding: 6px 12px;
+    background: var(--accent); color: var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 1.5px;
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  body.vision .vision-indicator { display: inline-flex; }
   .mono { font-family: "JetBrains Mono", monospace; }
   .small { font-size: 12px; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
   .label-tag {
@@ -937,6 +997,8 @@
     max-width: 980px;
     width: 100%;
     text-align: center;
+    justify-content: flex-start;
+    padding-top: 32px;
   }
   .slide-end h1 {
     margin-bottom: 14px;
@@ -955,7 +1017,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    margin-bottom: 36px;
+    margin-bottom: 24px;
     text-align: left;
   }
   .end-points .end-point:nth-child(4),
@@ -990,18 +1052,20 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    padding: 12px;
+    padding: 8px 12px;
+    gap: 3px;
     background: var(--bg-2);
     border: 2px solid var(--line);
   }
   .end-qr img {
-    width: 150px;
+    width: 120px;
+    height: 120px;
     background: var(--ink);
-    padding: 8px;
+    padding: 5px;
     border: 2px solid var(--ink);
   }
   .end-qr p {
-    margin-top: 8px;
+    margin-top: 4px;
     color: var(--muted);
     font-size: 11px;
     font-family: "JetBrains Mono", monospace;
@@ -1456,6 +1520,11 @@
         <h4>Scan QR → gem prompts.html</h4>
         <p>Bogmærk det. Brug det i næste uge. Det er dit nye udgangspunkt.</p>
       </div>
+      <div class="end-point">
+        <span class="num">06 / HVIS DU VIL HJÆLPE EN ANDEN</span>
+        <h4>Sid sammen to og to</h4>
+        <p>Én skriver prompts, én skriver kode. Byt roller hver halve time. Så lærer I dobbelt så hurtigt.</p>
+      </div>
     </div>
     <div class="end-qr">
       <img src="assets/qr.png" alt="QR kode">
@@ -1467,8 +1536,9 @@
 </div>
 
 <div class="progress" id="progress"></div>
-<div class="nav-hint">← → · SPACE · F = FULLSCREEN</div>
+<div class="nav-hint">← → · SPACE · F = FULLSCREEN · V = VISION</div>
 <div class="mobile-tap" id="mobileTap">NÆSTE SLIDE</div>
+<div class="vision-indicator" id="visionIndicator">👁️ VISION MODE</div>
 
 <script>
   const deck = document.getElementById('deck');
@@ -1498,6 +1568,15 @@
     else if (e.key === 'f' || e.key === 'F') {
       if (!document.fullscreenElement) document.documentElement.requestFullscreen();
       else document.exitFullscreen();
+    }
+    else if (e.key === 'v' || e.key === 'V') {
+      document.body.classList.toggle('vision');
+      // Vis en kort pop-up-tekst første gang
+      if (document.body.classList.contains('vision')) {
+        const ind = document.getElementById('visionIndicator');
+        ind.textContent = '👁️ VISION TIL · TRYK V FOR AT SLÅ FRA';
+        setTimeout(() => { ind.textContent = '👁️ VISION MODE'; }, 2500);
+      }
     }
   });
 
