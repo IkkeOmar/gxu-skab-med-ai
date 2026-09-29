@@ -4,26 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GXU — Skab med AI (elev-guide)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0d17;
-    --bg-2: #131629;
-    --purple: #7c5cfc;
-    --cyan: #38bdf8;
-    --pink: #f472b6;
-    --yellow: #facc15;
-    --green: #10b981;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --glass: rgba(255,255,255,0.04);
-    --glass-border: rgba(255,255,255,0.1);
+    --bg: #faf8f3;
+    --bg-2: #ffffff;
+    --ink: #0a0a0a;
+    --ink-2: #2a2a28;
+    --muted: #6b6b66;
+    --line: #0a0a0a;
+    --accent: #ff5b1f;
+    --accent-2: #0e7c8a;
+    --accent-3: #facc15;
+    --danger: #d23f3f;
+    --good: #1a7a3f;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: radial-gradient(ellipse at top, rgba(124,92,252,0.18), transparent 50%), radial-gradient(ellipse at bottom right, rgba(56,189,248,0.12), transparent 50%), var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     line-height: 1.55;
     padding: 24px 20px 80px;
     padding-bottom: max(80px, env(safe-area-inset-bottom));
@@ -31,175 +34,232 @@
   }
   .wrap { max-width: 640px; margin: 0 auto; }
 
-  /* Hero */
-  header { text-align: center; padding: 24px 0 32px; }
-  header .pill {
-    display: inline-block; padding: 6px 14px;
-    background: rgba(124,92,252,0.15); border: 1px solid var(--purple); border-radius: 999px;
-    color: var(--purple); font-size: 13px; font-weight: 600; letter-spacing: 1px;
-    margin-bottom: 16px;
-  }
-  header h1 { font-size: 32px; font-weight: 800; line-height: 1.1; margin-bottom: 12px; }
-  header h1 .grad { background: linear-gradient(135deg, var(--purple), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  header p { color: var(--muted); font-size: 15px; }
-  header .back {
-    display: inline-block; margin-top: 20px; padding: 8px 16px;
-    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 999px;
-    color: var(--cyan); font-size: 14px; text-decoration: none; font-weight: 600;
-  }
-
-  /* Sections */
-  section { margin-top: 36px; }
-  section h2 {
-    font-size: 22px; font-weight: 700; margin-bottom: 6px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  section h2 .num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 30px; height: 30px; border-radius: 50%;
-    background: rgba(124,92,252,0.2); color: var(--purple);
-    font-size: 14px; font-weight: 700;
-  }
-  section h3 { font-size: 17px; font-weight: 700; margin: 18px 0 8px; color: var(--cyan); }
-  section p { font-size: 16px; color: var(--text); margin-bottom: 12px; }
-  section .lead { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
-
-  /* Cards */
-  .card {
-    background: var(--glass); border: 1px solid var(--glass-border);
-    border-radius: 14px; padding: 18px; margin-bottom: 12px;
-    transition: transform 0.15s ease-out, border-color 0.15s ease-out;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .card:active {
-    transform: scale(0.985);
-    border-color: rgba(124,92,252,0.4);
-  }
-  .option:active {
-    transform: scale(0.985);
-  }
-  .card .title { font-weight: 700; font-size: 16px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
-  .card .title svg { width: 22px; height: 22px; flex-shrink: 0; }
-  .card .desc { font-size: 14px; color: var(--muted); }
-
-  /* Tool card colors */
-  .card.tool-or .title svg { color: var(--cyan); }
-  .card.tool-gh .title svg { color: var(--green); }
-  .card.tool-vs .title svg { color: var(--purple); }
-  .card.tool-her .title svg { color: var(--pink); }
-
-  /* Code blocks */
-  pre, code {
-    font-family: "SF Mono", Monaco, Consolas, monospace;
-    background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border);
-    border-radius: 8px; padding: 12px 14px;
-    font-size: 13px; line-height: 1.5; overflow-x: auto;
-    color: var(--cyan); display: block; white-space: pre-wrap;
-    margin: 10px 0;
-  }
-  code { display: inline; padding: 2px 6px; font-size: 13px; }
-
-  /* Steps */
-  .steps { counter-reset: step; padding-left: 0; list-style: none; }
-  .steps li {
-    counter-increment: step;
-    padding: 12px 0 12px 36px;
-    position: relative;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-size: 15px;
-  }
-  .steps li:last-child { border-bottom: none; }
-  .steps li::before {
-    content: counter(step);
-    position: absolute; left: 0; top: 12px;
-    width: 24px; height: 24px;
-    background: var(--purple); color: white;
-    border-radius: 50%; font-size: 12px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  /* Two-col option chooser */
-  .options { display: grid; gap: 12px; }
-  .option {
-    background: var(--glass); border: 2px solid var(--glass-border);
-    border-radius: 14px; padding: 16px;
-  }
-  .option.a { border-color: var(--cyan); }
-  .option.b { border-color: var(--green); }
-  .option.c { border-color: var(--pink); }
-  .option .badge {
-    display: inline-block; padding: 3px 10px; border-radius: 999px;
-    font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px;
-  }
-  .option.a .badge { background: rgba(56,189,248,0.15); color: var(--cyan); }
-  .option.b .badge { background: rgba(16,185,129,0.15); color: var(--green); }
-  .option.c .badge { background: rgba(244,114,182,0.15); color: var(--pink); }
-  .option .badge.best { box-shadow: 0 0 0 2px currentColor inset; }
-  .option h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-  .option p { font-size: 14px; color: var(--muted); margin-bottom: 0; }
-
-  /* Highlight boxes */
-  .callout {
-    background: rgba(124,92,252,0.08); border-left: 3px solid var(--purple);
-    border-radius: 0 10px 10px 0; padding: 14px 16px; margin: 14px 0;
-    font-size: 14px;
-  }
-  .callout.warn { background: rgba(250,204,21,0.08); border-left-color: var(--yellow); }
-  .callout strong { color: var(--purple); }
-  .callout.warn strong { color: var(--yellow); }
-
-  /* Pill / button */
-  .btn {
-    display: inline-block; padding: 12px 22px;
-    background: var(--purple); color: white;
-    border-radius: 999px; font-weight: 600; font-size: 15px;
-    text-decoration: none;
-  }
-
   /* Sticky top bar */
   .topbar {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(11,13,23,0.85); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border);
+    background: var(--bg);
+    border-bottom: 2px solid var(--ink);
     padding: 10px 16px;
     padding-top: max(10px, env(safe-area-inset-top));
     margin: -24px -20px 0;
     display: flex; justify-content: space-between; align-items: center;
     font-size: 13px;
+    font-family: "JetBrains Mono", monospace;
   }
-  .topbar .brand { font-weight: 700; color: var(--purple); }
-  .topbar a { color: var(--cyan); text-decoration: none; font-size: 13px; }
+  .topbar .brand { font-weight: 700; color: var(--ink); }
+  .topbar .brand::before {
+    content: ""; display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .topbar a { color: var(--ink); text-decoration: none; font-weight: 700; }
 
-  /* Tip tag */
-  .tip {
-    display: inline-block; padding: 2px 8px;
-    background: rgba(56,189,248,0.15); color: var(--cyan);
-    border-radius: 6px; font-size: 12px; font-weight: 600;
-    margin-right: 4px;
+  /* Hero */
+  header { padding: 32px 0; border-bottom: 2px solid var(--ink); }
+  header .pill {
+    display: inline-block; padding: 5px 10px;
+    background: var(--accent); color: var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    margin-bottom: 14px;
+  }
+  header h1 { font-size: 36px; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 10px; }
+  header h1 .accent-word { color: var(--accent); font-style: italic; }
+  header p { color: var(--ink-2); font-size: 16px; margin-bottom: 18px; }
+  header .back {
+    display: inline-block; padding: 8px 14px;
+    background: var(--ink); color: var(--bg);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    text-decoration: none;
+    border: 2px solid var(--ink);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    -webkit-tap-highlight-color: transparent;
+  }
+  header .back:active {
+    transform: translate(2px, 2px);
+  }
+
+  /* Sections */
+  section { margin-top: 36px; padding-top: 24px; border-top: 2px solid var(--ink); }
+  section h2 {
+    font-size: 24px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 12px;
+    letter-spacing: -0.01em;
+  }
+  section h2 .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--ink); color: var(--bg);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; font-weight: 700;
+  }
+  section h3 {
+    font-size: 16px; font-weight: 700; margin: 18px 0 8px;
+    font-family: "JetBrains Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  section h3.bad { color: var(--danger); }
+  section h3.good { color: var(--good); }
+  section p { font-size: 16px; color: var(--ink-2); margin-bottom: 12px; }
+  section p strong { color: var(--ink); }
+  section .lead { color: var(--muted); font-size: 15px; margin-bottom: 18px; font-family: "JetBrains Mono", monospace; }
+
+  /* Cards */
+  .card {
+    background: var(--bg-2);
+    border: 2px solid var(--ink);
+    padding: 16px;
+    margin-bottom: 10px;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 var(--ink);
+  }
+  .card .title {
+    font-weight: 700; font-size: 17px;
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .card .title svg { width: 22px; height: 22px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .card.tool-or .title { color: var(--accent); }
+  .card.tool-gh .title { color: var(--ink); }
+  .card.tool-vs .title { color: var(--accent-2); }
+  .card.tool-her .title { color: var(--accent-3); }
+  .card.tool-or .title svg { stroke: var(--accent); }
+  .card.tool-gh .title svg { stroke: var(--ink); fill: var(--ink); }
+  .card.tool-vs .title svg { stroke: var(--accent-2); }
+  .card.tool-her .title svg { stroke: var(--accent-3); }
+  .card .desc { font-size: 14px; color: var(--ink-2); }
+
+  /* Code blocks */
+  pre {
+    font-family: "JetBrains Mono", monospace;
+    background: var(--ink); color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin: 10px 0 16px;
+  }
+  pre.bad { border-left: 6px solid var(--danger); }
+  pre.good { border-left: 6px solid var(--good); }
+  code {
+    font-family: "JetBrains Mono", monospace;
+    background: var(--ink); color: var(--accent);
+    padding: 1px 6px;
+    font-size: 13px;
+  }
+
+  /* Steps list */
+  .steps { padding-left: 0; list-style: none; counter-reset: step; margin: 12px 0; }
+  .steps li {
+    counter-increment: step;
+    padding: 10px 0 10px 36px;
+    position: relative;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 15px;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute; left: 0; top: 10px;
+    width: 26px; height: 26px;
+    background: var(--accent); color: var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Options */
+  .option {
+    background: var(--bg-2);
+    border: 2px solid var(--ink);
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .option:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 var(--ink);
+  }
+  .option .badge {
+    display: inline-block; padding: 3px 10px;
+    background: var(--ink); color: var(--bg);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
+  .option .badge.best { background: var(--accent); color: var(--ink); }
+  .option .badge.easy { background: var(--good); color: var(--bg); }
+  .option .badge.fallback { background: var(--accent-3); color: var(--ink); }
+  .option h4 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .option p { font-size: 14px; color: var(--ink-2); margin-bottom: 8px; }
+
+  /* Highlight boxes */
+  .callout {
+    background: var(--bg-2);
+    border: 2px solid var(--accent);
+    padding: 14px 16px; margin: 14px 0;
+    font-size: 14px;
+  }
+  .callout.warn { border-color: var(--accent-3); background: #fffbe6; }
+  .callout strong { color: var(--ink); }
+
+  /* Button */
+  .btn {
+    display: inline-block; padding: 12px 22px;
+    background: var(--accent); color: var(--ink);
+    border: 2px solid var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700; font-size: 13px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin-top: 12px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--ink);
   }
 
   /* Footer */
   footer {
     margin-top: 56px; padding-top: 24px;
-    border-top: 1px solid var(--glass-border);
-    text-align: center; color: var(--muted); font-size: 13px;
+    border-top: 2px solid var(--ink);
+    text-align: center;
+    color: var(--muted);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
   }
-  footer p { margin-bottom: 6px; font-size: 13px; }
+  footer p { margin-bottom: 6px; }
+  footer a { color: var(--ink); text-decoration: none; font-weight: 700; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <div class="topbar">
-  <span class="brand">⚡ GXU · Skab med AI</span>
-  <a href="prompts.html">Prompts →</a>
+  <span class="brand">GXU · SKAB MED AI</span>
+  <a href="prompts.html">PROMPTS →</a>
 </div>
 
 <header>
   <span class="pill">ELEV-GUIDE</span>
-  <h1>Hej — du har <span class="grad">AI i lommen.</span></h1>
+  <h1>Hej — du har <span class="accent-word">AI i lommen.</span></h1>
   <p>Gem denne side på din telefon. Du kan bruge den i dag og derhjemme.</p>
-  <a href="index.html" class="back">← Tilbage til præsentationen</a>
+  <a href="index.html" class="back">← TILBAGE TIL PRÆSENTATIONEN</a>
 </header>
 
 <section>
@@ -208,7 +268,7 @@
 
   <div class="card tool-or">
     <div class="title">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       OpenRouter
     </div>
     <div class="desc">Én nøgle, alle AI-modeller. Som en fjernbetjening der virker til alle TV.</div>
@@ -216,7 +276,7 @@
 
   <div class="card tool-gh">
     <div class="title">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.55C20.22 21.38 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.55C20.22 21.38 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
       GitHub
     </div>
     <div class="desc">Google Drive for kode. Din AI kan læse og skrive direkte i den.</div>
@@ -224,7 +284,7 @@
 
   <div class="card tool-vs">
     <div class="title">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       VS Code
     </div>
     <div class="desc">Word til kode. Du skriver mindre, din AI skriver mere.</div>
@@ -232,7 +292,7 @@
 
   <div class="card tool-her">
     <div class="title">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
       Hermes
     </div>
     <div class="desc">En AI du kan styre fra telefonen. Den husker hvad I har lavet.</div>
@@ -243,16 +303,17 @@
   <h2><span class="num">2</span> Sådan skriver du en god prompt</h2>
   <p class="lead">AI er dumt klogt. Den gør præcis hvad du siger — ikke hvad du mener.</p>
 
-  <h3>Dårlig prompt</h3>
-  <pre>lav mig en app</pre>
+  <h3 class="bad">DÅRLIG PROMPT</h3>
+  <pre class="bad">lav mig en app</pre>
 
-  <h3>God prompt</h3>
-  <pre>Lav en simpel huskeliste-app til telefonen.
+  <h3 class="good">GOD PROMPT</h3>
+  <pre class="good">Lav en simpel huskeliste-app til telefonen.
 Den skal have:
 - Et input-felt øverst hvor jeg skriver ting jeg skal
 - En knap der gemmer det på listen
 - En liste der viser mine ting
 - En knap ved hver ting der sletter den
+
 Brug HTML, CSS og JavaScript i én fil.
 Jeg er ny — forklar hvad du laver mens du koder.</pre>
 
@@ -264,7 +325,7 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
   </ol>
 
   <div class="callout">
-    <strong>To remember:</strong> Hvis din AI laver noget mærkeligt, så er det næsten altid fordi du ikke var tydelig nok. Skriv din prompt om — det er ikke AI'en der er dum.
+    <strong>HUSK:</strong> Hvis din AI laver noget mærkeligt, så er det næsten altid fordi du ikke var tydelig nok. Skriv din prompt om — det er ikke AI'en der er dum.
   </div>
 </section>
 
@@ -273,35 +334,50 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
   <p class="lead">I dag bygger du en af disse fire. Scan QR-koden på slide 7 for at få din startkode.</p>
 
   <div class="card">
-    <div class="title" style="color: var(--cyan);">🌐 Hjemmeside</div>
+    <div class="title" style="color: var(--accent-2);">
+      <svg viewBox="0 0 24 24" style="stroke: var(--accent-2);"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      HJEMMESIDE
+    </div>
     <div class="desc">En side om dig, en klub, en hobby. Frit humør.</div>
   </div>
+
   <div class="card">
-    <div class="title" style="color: var(--green);">🛒 Webshop</div>
+    <div class="title" style="color: var(--good);">
+      <svg viewBox="0 0 24 24" style="stroke: var(--good);"><path d="M3 3h2l3 12h12l2-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+      WEBSHOP
+    </div>
     <div class="desc">En butik der sælger ting. Billeder, priser, kurv.</div>
   </div>
+
   <div class="card">
-    <div class="title" style="color: var(--pink);">📱 App</div>
+    <div class="title" style="color: var(--danger);">
+      <svg viewBox="0 0 24 24" style="stroke: var(--danger);"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+      APP
+    </div>
     <div class="desc">En app til din telefon. Android eller iOS.</div>
   </div>
+
   <div class="card">
-    <div class="title" style="color: var(--yellow);">🎮 Spil</div>
+    <div class="title" style="color: var(--accent-3);">
+      <svg viewBox="0 0 24 24" style="stroke: var(--accent-3);"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 12h4M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg>
+      SPIL
+    </div>
     <div class="desc">Et spil i browseren. Simpel mekanik, fed feedback.</div>
   </div>
 
-  <a href="prompts.html" class="btn">Hent start-prompts →</a>
+  <a href="prompts.html" class="btn">HENT START-PROMPTS →</a>
 </section>
 
 <section>
   <h2><span class="num">4</span> Arbejd videre derhjemme</h2>
   <p class="lead">Når du er færdig i dag kan du fortsætte alene — eller sammen med mig.</p>
 
-  <h3>Mulighed A — Del dit projekt med mig <span class="tip">ANBEFALET</span></h3>
-  <div class="option a">
+  <h3>MULIGHED A — DEL DIT PROJEKT MED MIG</h3>
+  <div class="option">
     <span class="badge best">BEDST</span>
     <h4>Tilføj mig som makker på GitHub</h4>
     <p>Så kan min AI læse og skrive i dit projekt. Vi kan bygge videre sammen.</p>
-    <ol class="steps" style="margin-top: 14px;">
+    <ol class="steps">
       <li>Gå til dit repo på github.com (din-brugernavn/din-app)</li>
       <li>Klik <strong>Settings</strong> → <strong>Collaborators</strong></li>
       <li>Klik <strong>Add people</strong></li>
@@ -310,12 +386,12 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
     </ol>
   </div>
 
-  <h3>Mulighed B — Gør dit projekt offentligt</h3>
-  <div class="option b">
-    <span class="badge">NEMMEST</span>
+  <h3>MULIGHED B — GØR DIT PROJEKT OFFENTLIGT</h3>
+  <div class="option">
+    <span class="badge easy">NEMMEST</span>
     <h4>Gør dit repo public</h4>
     <p>Jeg kan se det, men ikke ændre det. Godt hvis du vil have feedback.</p>
-    <ol class="steps" style="margin-top: 14px;">
+    <ol class="steps">
       <li>Gå til dit repo på github.com</li>
       <li>Klik <strong>Settings</strong> → nederst: <strong>Change visibility</strong></li>
       <li>Vælg <strong>Public</strong></li>
@@ -323,12 +399,12 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
     </ol>
   </div>
 
-  <h3>Mulighed C — Start fra min skabelon</h3>
-  <div class="option c">
-    <span class="badge">HVIS DU IKKE HAR ET PROJEKT</span>
+  <h3>MULIGHED C — START FRA MIN SKABELON</h3>
+  <div class="option">
+    <span class="badge fallback">HVIS DU IKKE HAR ET PROJEKT</span>
     <h4>Klon mit workspace</h4>
     <p>Jeg har et start-repo klar. Du tager en kopi og bygger videre.</p>
-    <ol class="steps" style="margin-top: 14px;">
+    <ol class="steps">
       <li>Gå til <code>github.com/IkkeOmar/gxu-skab-med-ai</code></li>
       <li>Klik den grønne <strong>Code</strong>-knap → kopier URL</li>
       <li>I VS Code: <code>Ctrl+Shift+P</code> → <code>Git: Clone</code></li>
@@ -340,9 +416,9 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
 
 <section>
   <h2><span class="num">5</span> Giv din AI-agent adgang til GitHub</h2>
-  <p class="lead">Hvis du vil arbejde videre sammen med mig (eller din egen AI derhjemme), så del dit repo. Så kan AI'en læse og skrive i dine filer.</p>
+  <p>Hvis du vil arbejde videre sammen med mig (eller din egen AI derhjemme), så del dit repo. Så kan AI'en læse og skrive i dine filer.</p>
 
-  <h3>Hvad en AI-agent kan når den har adgang</h3>
+  <h3>HVAD EN AI-AGENT KAN NÅR DEN HAR ADGANG</h3>
   <ul class="steps">
     <li>Læse alle dine filer og forstå dit projekt</li>
     <li>Skrive ny kode direkte ind i dit repo</li>
@@ -350,7 +426,7 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
     <li>Fortælle dig hvad den har lavet (commit-beskeder)</li>
   </ul>
 
-  <h3>Sådan giver du din agent adgang</h3>
+  <h3>SÅDAN GØR DU</h3>
   <ol class="steps">
     <li>Opret en GitHub-konto hvis du ikke har en (gratis)</li>
     <li>Push dit projekt til et nyt repo (VS Code kan gøre det for dig)</li>
@@ -360,7 +436,7 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
   </ol>
 
   <div class="callout warn">
-    <strong>Vigtigt:</strong> Giv kun adgang til folk du stoler på. Når en AI-agent har adgang til dit repo, kan den læse ALT — også filer du ikke har delt med nogen.
+    <strong>VIGTIGT:</strong> Giv kun adgang til folk du stoler på. Når en AI-agent har adgang til dit repo, kan den læse ALT — også filer du ikke har delt med nogen.
   </div>
 </section>
 
@@ -376,19 +452,19 @@ Jeg er ny — forklar hvad du laver mens du koder.</pre>
   </ul>
 
   <div class="callout">
-    <strong>Husk:</strong> Den bedste måde at lære er at prøve, fejle, og prøve igen. AI gør det 100x hurtigere end Google.
+    <strong>HUSK:</strong> Den bedste måde at lære er at prøve, fejle, og prøve igen. AI gør det 100x hurtigere end Google.
   </div>
 </section>
 
 <footer>
-  <p><strong>GXU · Teknologi · Skab med AI</strong></p>
-  <p>Omar Jennane · onsdag d. 30. september 2026</p>
-  <p style="margin-top: 12px;">
-    <a href="index.html" style="color: var(--cyan); text-decoration: none;">Præsentation</a>
+  <p><strong>GXU · TEKNOLOGI · SKAB MED AI</strong></p>
+  <p>OMAR JENNANE · ONSDAG 30.09.2026</p>
+  <p style="margin-top: 14px;">
+    <a href="index.html">PRÆSENTATION</a>
     ·
-    <a href="prompts.html" style="color: var(--cyan); text-decoration: none;">Prompts</a>
+    <a href="prompts.html">PROMPTS</a>
     ·
-    <a href="https://github.com/IkkeOmar/gxu-skab-med-ai" style="color: var(--cyan); text-decoration: none;">GitHub</a>
+    <a href="https://github.com/IkkeOmar/gxu-skab-med-ai">GITHUB</a>
   </p>
 </footer>
 
