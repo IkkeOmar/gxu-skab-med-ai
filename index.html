@@ -438,21 +438,23 @@
     max-width: 720px;
   }
   .coding-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
   .coding-def {
     background: var(--bg-2);
     border: 2px solid var(--line);
-    padding: 22px 24px;
-    align-self: start;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 24px;
+    align-items: center;
   }
   .coding-def .lead {
     font-size: 22px;
     line-height: 1.25;
     font-weight: 600;
-    margin-bottom: 10px;
   }
   .coding-def .lead .clanker {
     color: var(--accent);
@@ -463,11 +465,13 @@
     font-size: 15px;
     color: var(--ink-2);
     line-height: 1.45;
+    padding-left: 24px;
+    border-left: 2px solid var(--line);
   }
   .coding-def .actual strong { color: var(--ink); }
   .coding-pills {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
   .pill {
@@ -1179,7 +1183,6 @@
     </div>
     <div class="coding-grid">
       <div class="coding-def">
-        <div class="small-note">DEFINITION</div>
         <div class="lead">Kodning er at <span class="clanker">fortælle en computer hvad den skal gøre</span>.</div>
         <div class="actual">
           Trin for trin hvad maskinen skal gøre — så gør den det. En <strong>kode</strong> er en opskrift skrevet så præcist at selv en clanker kan følge den.
