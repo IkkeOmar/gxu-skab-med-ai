@@ -319,6 +319,23 @@
     /* Skub GIF-rækken lidt tættere på */
     padding: 8px;
   }
+  .about-media .about-gif-box {
+    /* Selvstændig container til GIF — bevarer aspect ratio (200x251) */
+    border: 2px solid var(--line);
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    aspect-ratio: 200 / 251;
+    max-width: 180px;
+  }
+  .about-media .about-gif-box .about-gif {
+    /* Fyld container uden at crop — sort baggrund matcher boksen */
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+  }
   .about-media .row .r-text h4 {
     font-size: 16px;
     font-weight: 700;
@@ -1112,15 +1129,11 @@
         <img src="assets/chick-meme.jpg" alt="Fransk kylling">
         <div class="r-text">
           <h4>I dag</h4>
-          <p>Vi bygger en app sammen — på 90 minutter, fra nul til noget der virker.</p>
+          <p>Vi bygger en app sammen — fra nul til noget der virker.</p>
         </div>
       </div>
-      <div class="row about-gif-row">
-        <img src="assets/raccoon.gif" alt="Vaskebjørn der kigger på dig" class="about-gif">
-        <div class="r-text">
-          <h4>Spoiler</h4>
-          <p>Selv en vaskebjørn kan lære det her 😼</p>
-        </div>
+      <div class="about-gif-box">
+        <img src="assets/raccoon.gif" alt="" class="about-gif">
       </div>
     </div>
   </section>
