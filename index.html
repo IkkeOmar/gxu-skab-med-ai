@@ -421,9 +421,16 @@
   /* SLIDE 3 — Vocab                                */
   /* ============================================ */
   .slide-vocab {
-    max-width: 1200px;
+    max-width: 1800px;
     width: 100%;
+    padding-left: 0;        /* tilsidesæt .slide's 72px V+H padding */
+    padding-right: 0;
+    box-sizing: border-box;
   }
+  /* Gen-indfør venstre/højre padding på indholdet indeni,
+     så overskrift og cards stadig holder sig fra kanten. */
+  .slide-vocab .vocab-header { padding-left: 72px; padding-right: 72px; }
+  .slide-vocab .vocab-grid { padding-left: 72px; padding-right: 72px; }
   .vocab-header { margin-bottom: 40px; }
   .vocab-header .small { color: var(--accent); margin-bottom: 10px; display: block; }
   .vocab-header h2 { margin-bottom: 8px; }
