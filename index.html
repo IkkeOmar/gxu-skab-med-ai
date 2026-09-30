@@ -424,6 +424,106 @@
   }
 
   /* ============================================ */
+  /* SLIDE 4 — Chinese Room                         */
+  /* ============================================ */
+  .slide-chinese-room {
+    max-width: 1800px;
+    width: 100%;
+    padding-left: 0;        /* tilsidesæt .slide's 72px V+H padding */
+    padding-right: 0;
+    box-sizing: border-box;
+  }
+  .cr-header { margin-bottom: 32px; padding-left: 72px; padding-right: 72px; }
+  .cr-header .small { color: var(--accent); margin-bottom: 10px; display: block; }
+  .cr-header h2 { margin-bottom: 8px; }
+  .cr-header h2 .accent-word { color: var(--accent); font-style: italic; }
+  .cr-header p {
+    color: var(--muted);
+    font-size: 18px;
+    font-family: "JetBrains Mono", monospace;
+    max-width: 720px;
+  }
+  .cr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  .cr-visual {
+    background: var(--ink);
+    color: var(--bg);
+    border: 2px solid var(--line);
+    padding: 24px;
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .cr-visual .person {
+    background: var(--accent);
+    color: var(--ink);
+    display: inline-block;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+  }
+  .cr-visual .arrows {
+    font-size: 22px;
+    color: var(--accent);
+    margin: 8px 0;
+    line-height: 1.4;
+  }
+  .cr-visual .symbol {
+    background: var(--bg);
+    color: var(--ink);
+    padding: 6px 12px;
+    margin: 4px 2px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .cr-visual .caption {
+    color: rgba(250, 248, 243, 0.7);
+    font-size: 11px;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+  .cr-text { display: flex; flex-direction: column; gap: 14px; }
+  .cr-text .lead {
+    font-size: 22px;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+  .cr-text .lead .hl { color: var(--accent); font-weight: 700; }
+  .cr-text .point {
+    background: var(--bg-2);
+    border: 2px solid var(--line);
+    padding: 16px 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .cr-text .point strong { color: var(--ink); }
+  .cr-text .point:nth-child(2) { border-left: 4px solid var(--accent); }
+  .cr-text .point:nth-child(3) { border-left: 4px solid var(--accent-2); }
+  .cr-takeaway {
+    margin-top: 24px;
+    padding: 16px 22px;
+    background: var(--accent);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    padding-left: 72px;
+    padding-right: 72px;
+    max-width: 1800px;
+  }
+
+  /* ============================================ */
   /* SLIDE 3 — Vocab                                */
   /* ============================================ */
   .slide-vocab {
@@ -1287,13 +1387,14 @@
     </div>
     <div class="cover-right">
       <div class="map-card" data-jump="2"><span class="num">1</span><h4>Om mig</h4><p>Hvem er Omar, og hvorfor AI?</p></div>
-      <div class="map-card" data-jump="3"><span class="num">2</span><h4>4 ord</h4><p>Server, LLM, agent, harness</p></div>
-      <div class="map-card" data-jump="4"><span class="num">3</span><h4>Hvad er kodning?</h4><p>60 sek — så kan du forklare det</p></div>
-      <div class="map-card" data-jump="5"><span class="num">4</span><h4>Brainstorm</h4><p>Gratis AI'er mens du installerer</p></div>
-      <div class="map-card" data-jump="6"><span class="num">5</span><h4>Snak med AI</h4><p>Trash in / trash out</p></div>
-      <div class="map-card" data-jump="7"><span class="num">6</span><h4>Værktøjerne</h4><p>Det vi har installeret</p></div>
-      <div class="map-card" data-jump="8"><span class="num">7</span><h4>Vælg projekt</h4><p>Site · Webshop · App · Spil</p></div>
-      <div class="map-card" data-jump="9"><span class="num">8</span><h4>Go build</h4><p>Og så er det bare at gå i gang</p></div>
+      <div class="map-card" data-jump="3"><span class="num">2</span><h4>6 ord</h4><p>Server, LLM, agent, harness, nøgle, sti</p></div>
+      <div class="map-card" data-jump="4"><span class="num">3</span><h4>Forstår AI?</h4><p>Searles Chinese room — 60 sek</p></div>
+      <div class="map-card" data-jump="5"><span class="num">4</span><h4>Hvad er kodning?</h4><p>60 sek — så kan du forklare det</p></div>
+      <div class="map-card" data-jump="6"><span class="num">5</span><h4>Brainstorm</h4><p>Gratis AI'er mens du installerer</p></div>
+      <div class="map-card" data-jump="7"><span class="num">6</span><h4>Snak med AI</h4><p>Trash in / trash out</p></div>
+      <div class="map-card" data-jump="8"><span class="num">7</span><h4>Værktøjerne</h4><p>Det vi har installeret</p></div>
+      <div class="map-card" data-jump="9"><span class="num">8</span><h4>Vælg projekt</h4><p>Site · Webshop · App · Spil</p></div>
+      <div class="map-card" data-jump="10"><span class="num">9</span><h4>Go build</h4><p>Og så er det bare at gå i gang</p></div>
       <a href="prompts.html" class="map-card scan"><span class="num">→</span><h4>Få prompts med hjem</h4><p>Åbn prompts.html — eller scan QR på slide 8</p></a>
     </div>
   </section>
@@ -1395,10 +1496,38 @@
     </div>
   </section>
 
-  <!-- SLIDE 4: HVAD ER KODNING -->
-  <section class="slide slide-coding" data-slide="4">
+  <!-- SLIDE 4: CHINESE ROOM -->
+  <section class="slide slide-chinese-room" data-slide="4">
+    <div class="cr-header">
+      <span class="small">SLIDE 04 · TÆNKER DU?</span>
+      <h2>Forstår AI <span class="accent-word">dig</span>?</h2>
+      <p>John Searle stillede det samme spørgsmål i 1980. Svaret ændrede hvad "forstå" betyder.</p>
+    </div>
+    <div class="cr-grid">
+      <div class="cr-visual">
+        <div class="person">PERSON I RUMMET</div>
+        <div class="arrows">↑ kinesisk symbol ind ↓</div>
+        <div>
+          <span class="symbol">你</span>
+          <span class="symbol">好</span>
+          <span class="symbol">吗</span>
+        </div>
+        <div class="arrows">↑ kinesisk symbol ud ↓</div>
+        <div class="caption">FØLGER EN OPSKRIFT — KAN IKKE ET ORD KINESISK</div>
+      </div>
+      <div class="cr-text">
+        <div class="lead">En person sidder <span class="hl">låst inde i et rum</span>. Udenfor sender nogen sedler med kinesiske symboler ind. Han slår op i en kæmpe bog og sender de rigtige symboler ud igen. Dem der står udenfor <strong>tror han forstår kinesisk</strong>.</div>
+        <div class="point"><strong>Det gør han ikke.</strong> Han følger bare regler — uanset om de er skrevet i hånden eller beregnet af en computer.</div>
+        <div class="point"><strong>Pointen:</strong> det der <em>virker</em> som forståelse, kan være mønstergenkendelse på steroider. LLM'er er bedre end personen i rummet — men de er <em>lavet af det samme princip</em>.</div>
+      </div>
+    </div>
+    <div class="cr-takeaway">Searles pointe: at <em>svare rigtigt</em> er ikke det samme som at <em>forstå</em>. Spørg derfor altid AI'en om <strong>hvorfor</strong> — ikke kun <strong>hvad</strong>.</div>
+  </section>
+
+  <!-- SLIDE 5: HVAD ER KODNING -->
+  <section class="slide slide-coding" data-slide="5">
     <div class="coding-header">
-      <span class="small">SLIDE 04 · HVAD ER DET</span>
+      <span class="small">SLIDE 05 · HVAD ER DET</span>
       <h2>Hvad er <span class="accent-word">kodning</span>?</h2>
       <p>60 sekunder. Så kan du forklare det videre.</p>
     </div>
@@ -1442,10 +1571,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 5: BRAINSTORM -->
-  <section class="slide slide-brainstorm" data-slide="5">
+  <!-- SLIDE 6: BRAINSTORM -->
+  <section class="slide slide-brainstorm" data-slide="6">
     <div class="bs-text">
-      <span class="small">SLIDE 05 · IMENS DU VENTER</span>
+      <span class="small">SLIDE 06 · IMENS DU VENTER</span>
       <h2>Brug AI til at <span class="accent-word">brainstorm</span></h2>
       <p class="lead">Downloads tager tid. Lad os ikke spilde den — åbn en AI i din browser og begynd at idéudvikle nu.</p>
       <div class="step"><span class="n">1</span><span>Gå ind på <a href="https://fmhy.net/ai" target="_blank" style="color:var(--accent); font-family:'JetBrains Mono',monospace; font-weight:700;">fmhy.net/ai</a> — en kæmpe liste af gratis AI'er</span></div>
@@ -1470,10 +1599,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 6: PROMPTS / TRASH IN OUT -->
-  <section class="slide slide-prompts" data-slide="6">
+  <!-- SLIDE 7: PROMPTS / TRASH IN OUT -->
+  <section class="slide slide-prompts" data-slide="7">
     <div class="prompts-header">
-      <span class="small">SLIDE 06 · TRASH IN, TRASH OUT</span>
+      <span class="small">SLIDE 07 · TRASH IN, TRASH OUT</span>
       <h2>Sådan snakker du med en <span class="accent-word">AI</span></h2>
       <p>En AI gør præcis det du beder om — hverken mere eller mindre. Så vær konkret.</p>
     </div>
@@ -1514,10 +1643,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 7: TOOLS -->
-  <section class="slide slide-tools" data-slide="7">
+  <!-- SLIDE 8: TOOLS -->
+  <section class="slide slide-tools" data-slide="8">
     <div class="tools-header">
-      <span class="small">SLIDE 07 · VÆRKTØJER</span>
+      <span class="small">SLIDE 08 · VÆRKTØJER</span>
       <h2>Det du har <span class="accent-word">lige nu</span></h2>
       <p>Kort forklaret. Ingen tech-snobs.</p>
     </div>
@@ -1557,10 +1686,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 8: VÆLG PROJEKT -->
-  <section class="slide slide-pick" data-slide="8">
+  <!-- SLIDE 9: VÆLG PROJEKT -->
+  <section class="slide slide-pick" data-slide="9">
     <div class="pick-header">
-      <span class="small">SLIDE 08 · DIN TUR</span>
+      <span class="small">SLIDE 09 · DIN TUR</span>
       <h2>Vælg dit <span class="accent-word">projekt</span></h2>
       <p>Scan QR → kopiér prompt → start</p>
     </div>
@@ -1596,9 +1725,9 @@
     </div>
   </section>
 
-  <!-- SLIDE 9: SLUT -->
-  <section class="slide slide-end" data-slide="9">
-    <span class="label-tag orange">SLIDE 09 · GO BUILD</span>
+  <!-- SLIDE 10: SLUT -->
+  <section class="slide slide-end" data-slide="10">
+    <span class="label-tag orange">SLIDE 10 · GO BUILD</span>
     <h1 style="margin-top:14px;">Build your own <span class="accent-word">X</span></h1>
     <p class="lead">Fra nul til noget der virker. Hjemmeside, webshop, app eller spil. Jeg kigger rundt — spørg når I er kørt fast.</p>
     <a class="byox-ref" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener">
