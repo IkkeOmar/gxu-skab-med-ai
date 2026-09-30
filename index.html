@@ -434,7 +434,7 @@
   }
   .vocab-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
   .vocab-card {
@@ -479,6 +479,8 @@
   .vocab-card:nth-child(2) .stripe { background: var(--accent-2); }
   .vocab-card:nth-child(3) .stripe { background: var(--accent-3); }
   .vocab-card:nth-child(4) .stripe { background: var(--ink); }
+.vocab-card:nth-child(5) .stripe { background: var(--accent); }
+.vocab-card:nth-child(6) .stripe { background: var(--accent-2); }
 
   /* ============================================ */
   /* SLIDE 4 — Hvad er kodning                      */
@@ -1331,7 +1333,7 @@
   <section class="slide slide-vocab" data-slide="3">
     <div class="vocab-header">
       <span class="small">SLIDE 02 · ORDBOG</span>
-      <h2>4 ord du skal kende</h2>
+      <h2>6 ord du skal kende</h2>
       <p>Du behøver ikke forstå det fuldt ud. Bare nok til at være med.</p>
     </div>
     <div class="vocab-grid">
@@ -1362,6 +1364,20 @@
         <h3>Harness</h3>
         <div class="simple">Det <span class="hl">system der styrer</span> din AI</div>
         <div class="desc">Det er værkstøjet der sætter din agent op. I dag bruger vi <strong>Hermes</strong> — det er vores harness.</div>
+      </div>
+      <div class="vocab-card">
+        <div class="stripe"></div>
+        <div class="term">NØGLEN</div>
+        <h3>API-key</h3>
+        <div class="simple">En <span class="hl">adgangskode til en AI-tjeneste</span></div>
+        <div class="desc">En lang kode-streng (fx <code>sk-abc123...</code>) der giver din AI lov til at snakke med en tjeneste som OpenAI eller Anthropic. Den skal med når du vil bruge AI uden at logge ind hver gang.</div>
+      </div>
+      <div class="vocab-card">
+        <div class="stripe"></div>
+        <div class="term">STIEN</div>
+        <h3>Sti / PATH</h3>
+        <div class="simple">Hvor på computeren en <span class="hl">mappe eller fil er</span></div>
+        <div class="desc">En adresse som <code>/home/omar/projekter</code> eller <code>C:\Users\Omar\Documents</code>. Når du skal fortælle en AI hvor dit projekt ligger, bruger du stien — præcis som en postadresse.</div>
       </div>
     </div>
   </section>
