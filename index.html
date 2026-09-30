@@ -292,13 +292,19 @@
   /* SLIDE 2 — Om Omar                              */
   /* ============================================ */
   .slide-about {
-    max-width: 1200px;
+    max-width: 1800px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 56px;
     align-items: center;
+    padding-left: 0;        /* tilsidesæt .slide's 72px V+H padding */
+    padding-right: 0;
+    box-sizing: border-box;
   }
+  /* Gen-indfør padding på indholdet indeni */
+  .slide-about .about-text { padding-left: 72px; }
+  .slide-about .about-media { padding-right: 72px; }
   .about-text h2 {
     margin-bottom: 8px;
   }
